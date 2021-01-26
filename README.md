@@ -155,7 +155,7 @@ mutation($owner: OwnerInput!) {
     address
   }
 }
-# Mutation
+# variables
 {
   "owner": {
     "name": "New owner",
@@ -171,7 +171,7 @@ mutation($owner: OwnerInput!, $ownerId: String!) {
     address
   }
 }
-# Mutation variables
+# variables
 {
   "owner": {
     "name": "update owner",
@@ -184,7 +184,7 @@ mutation($owner: OwnerInput!, $ownerId: String!) {
 mutation($ownerId: ID!) {
 	ownerDelete(ownerId: $ownerId)
 }
-# Mutation variables
+# variables
 {
   "ownerId": "d33e753f-8aed-4b48-bd6a-8c601fd25ac3"
 }
@@ -202,7 +202,7 @@ mutation($account: AccountInput!) {
     }
   }
 }
-# Mutation variables
+# variables
 {
   "account": {
     "description": "New account",
@@ -224,7 +224,7 @@ mutation($account: AccountInput!, $accountId: String!) {
     }
   }
 }
-# Mutation variables
+# variables
 {
   "account": {
     "description": "Updated account",
@@ -238,7 +238,7 @@ mutation($account: AccountInput!, $accountId: String!) {
 mutation($accountId: ID!) {
   accountDelete(accountId: $accountId)
 }
-# Mutation variables
+# variables
 {
   "accountId": "e58dc519-f9f7-414c-bb24-5252e1abc548"
 }
