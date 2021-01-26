@@ -1,6 +1,6 @@
 ﻿using GraphQL.Types;
 
-using GraphQLDotNet.Api.Data.Entities;
+using GraphQLDotNet.Data.Entities;
 
 namespace GraphQLDotNet.Api.GraphQL.Types
 {

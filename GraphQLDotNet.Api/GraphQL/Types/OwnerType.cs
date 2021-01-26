@@ -1,8 +1,8 @@
 ﻿using GraphQL.DataLoader;
 using GraphQL.Types;
 
-using GraphQLDotNet.Api.Data.Entities;
 using GraphQLDotNet.Api.GraphQL.Contracts;
+using GraphQLDotNet.Data.Entities;
 
 namespace GraphQLDotNet.Api.GraphQL.Types
 {

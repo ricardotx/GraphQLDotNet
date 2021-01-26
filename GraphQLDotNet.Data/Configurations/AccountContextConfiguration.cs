@@ -1,11 +1,11 @@
-﻿using GraphQLDotNet.Api.Data.Entities;
+﻿using GraphQLDotNet.Data.Entities;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 using System;
 
-namespace GraphQLDotNet.Api.Data.Configurations
+namespace GraphQLDotNet.Data.Configurations
 {
     public class AccountContextConfiguration : IEntityTypeConfiguration<Account>
     {

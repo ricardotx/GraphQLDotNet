@@ -1,9 +1,9 @@
 ﻿using GraphQL;
 using GraphQL.DataLoader;
 
-using GraphQLDotNet.Api.Data.Contracts;
-using GraphQLDotNet.Api.Data.Entities;
 using GraphQLDotNet.Api.GraphQL.Contracts;
+using GraphQLDotNet.Data.Contracts;
+using GraphQLDotNet.Data.Entities;
 
 using System;
 using System.Collections.Generic;

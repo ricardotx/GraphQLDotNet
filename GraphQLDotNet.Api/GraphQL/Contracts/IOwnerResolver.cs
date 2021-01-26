@@ -1,7 +1,7 @@
 ﻿using GraphQL;
 using GraphQL.DataLoader;
 
-using GraphQLDotNet.Api.Data.Entities;
+using GraphQLDotNet.Data.Entities;
 
 using System.Collections.Generic;
 

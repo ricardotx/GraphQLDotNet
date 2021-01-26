@@ -1,12 +1,12 @@
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
 
-using GraphQLDotNet.Api.Data.Context;
-using GraphQLDotNet.Api.Data.Contracts;
-using GraphQLDotNet.Api.Data.Repository;
 using GraphQLDotNet.Api.GraphQL;
 using GraphQLDotNet.Api.GraphQL.Contracts;
 using GraphQLDotNet.Api.GraphQL.Resolvers;
+using GraphQLDotNet.Data.Context;
+using GraphQLDotNet.Data.Contracts;
+using GraphQLDotNet.Data.Repository;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -1,11 +1,11 @@
-﻿using GraphQLDotNet.Api.Data.Configurations;
-using GraphQLDotNet.Api.Data.Entities;
+﻿using GraphQLDotNet.Data.Configurations;
+using GraphQLDotNet.Data.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
 using System;
 
-namespace GraphQLDotNet.Api.Data.Context
+namespace GraphQLDotNet.Data.Context
 {
     public class ApplicationContext : DbContext
     {

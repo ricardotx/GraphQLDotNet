@@ -1,6 +1,6 @@
-﻿using GraphQLDotNet.Api.Data.Context;
-using GraphQLDotNet.Api.Data.Contracts;
-using GraphQLDotNet.Api.Data.Entities;
+﻿using GraphQLDotNet.Data.Context;
+using GraphQLDotNet.Data.Contracts;
+using GraphQLDotNet.Data.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Api.Data.Repository
+namespace GraphQLDotNet.Data.Repository
 {
     public class AccountRepository : IAccountRepository
     {

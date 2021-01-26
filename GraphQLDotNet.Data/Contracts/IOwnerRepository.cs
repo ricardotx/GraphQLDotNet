@@ -1,10 +1,10 @@
-﻿using GraphQLDotNet.Api.Data.Entities;
+﻿using GraphQLDotNet.Data.Entities;
 
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Api.Data.Contracts
+namespace GraphQLDotNet.Data.Contracts
 {
     public interface IOwnerRepository
     {
