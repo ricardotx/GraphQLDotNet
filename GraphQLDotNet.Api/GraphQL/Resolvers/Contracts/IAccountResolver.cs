@@ -5,7 +5,7 @@ using GraphQLDotNet.Data.Entities;
 
 using System.Collections.Generic;
 
-namespace GraphQLDotNet.Api.GraphQL.Contracts
+namespace GraphQLDotNet.Api.GraphQL.Resolvers.Contracts
 {
     public interface IAccountResolver
     {

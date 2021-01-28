@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 using System;
 
-namespace GraphQLDotNet.Data.Configurations
+namespace GraphQLDotNet.Data.Context.Configurations
 {
     public class AccountContextConfiguration : IEntityTypeConfiguration<Account>
     {

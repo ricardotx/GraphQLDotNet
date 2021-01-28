@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Data.Contracts
+namespace GraphQLDotNet.Data.Repository.Contracts
 {
     public interface IAccountRepository
     {

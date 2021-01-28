@@ -1,4 +1,4 @@
-﻿using GraphQLDotNet.Data.Configurations;
+﻿using GraphQLDotNet.Data.Context.Configurations;
 using GraphQLDotNet.Data.Entities;
 
 using Microsoft.EntityFrameworkCore;

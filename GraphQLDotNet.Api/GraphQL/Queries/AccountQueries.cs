@@ -1,6 +1,6 @@
 ﻿using GraphQL.Types;
 
-using GraphQLDotNet.Api.GraphQL.Contracts;
+using GraphQLDotNet.Api.GraphQL.Resolvers.Contracts;
 using GraphQLDotNet.Api.GraphQL.Types;
 
 namespace GraphQLDotNet.Api.GraphQL.Queries

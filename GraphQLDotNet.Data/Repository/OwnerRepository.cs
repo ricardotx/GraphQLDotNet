@@ -1,6 +1,6 @@
 ﻿using GraphQLDotNet.Data.Context;
-using GraphQLDotNet.Data.Contracts;
 using GraphQLDotNet.Data.Entities;
+using GraphQLDotNet.Data.Repository.Contracts;
 
 using Microsoft.EntityFrameworkCore;
 

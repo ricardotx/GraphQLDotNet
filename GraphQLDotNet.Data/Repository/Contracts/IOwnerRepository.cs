@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Data.Contracts
+namespace GraphQLDotNet.Data.Repository.Contracts
 {
     public interface IOwnerRepository
     {
