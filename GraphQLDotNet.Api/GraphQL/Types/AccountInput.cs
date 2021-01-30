@@ -8,8 +8,8 @@ namespace GraphQLDotNet.Api.GraphQL.Types
 		{
 			Name = "AccountInput";
 			Field<NonNullGraphType<AccountTypeEnum>>("type");
-			Field<StringGraphType>("description");
-			Field<NonNullGraphType<StringGraphType>>("ownerId");
+			Field<NonNullGraphType<StringGraphType>>("description");
+			Field<StringGraphType>("ownerId");
 		}
 	}
 }

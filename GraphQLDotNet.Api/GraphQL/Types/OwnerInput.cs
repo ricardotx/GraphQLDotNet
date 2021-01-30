@@ -8,7 +8,7 @@ namespace GraphQLDotNet.Api.GraphQL.Types
 		{
 			Name = "OwnerInput";
 			Field<NonNullGraphType<StringGraphType>>("name");
-			Field<NonNullGraphType<StringGraphType>>("address");
+			Field<StringGraphType>("address");
 		}
 	}
 }
