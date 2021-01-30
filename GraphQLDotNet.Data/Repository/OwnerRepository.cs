@@ -1,4 +1,4 @@
-﻿using GraphQLDotNet.Data.Context;
+using GraphQLDotNet.Data.Context;
 using GraphQLDotNet.Data.Entities;
 using GraphQLDotNet.Data.Repository.Contracts;
 
@@ -11,45 +11,45 @@ using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Data.Repository
 {
-    public class OwnerRepository : IOwnerRepository
-    {
-        private readonly ApplicationContext _context;
+	public class OwnerRepository : IOwnerRepository
+	{
+		private readonly ApplicationContext _context;
 
-        public OwnerRepository(ApplicationContext context)
-        {
-            _context = context;
-        }
+		public OwnerRepository(ApplicationContext context)
+		{
+			_context = context;
+		}
 
-        public Owner CreateOwner(Owner owner)
-        {
-            owner.Id = Guid.NewGuid();
-            _context.Add(owner);
-            _context.SaveChanges();
-            return owner;
-        }
+		public async Task<Owner> CreateAsync(Owner owner)
+		{
+			owner.Id = Guid.NewGuid();
+			await _context.AddAsync(owner);
+			await _context.SaveChangesAsync();
+			return owner;
+		}
 
-        public void DeleteOwner(Owner owner)
-        {
-            _context.Remove(owner);
-            _context.SaveChanges();
-        }
+		public async Task<IDictionary<Guid, Owner>> DataLoaderOwnersByIdAsync(IEnumerable<Guid> ownerIds)
+		{
+			var owners = await _context.Owners.Where(a => ownerIds.Contains(a.Id)).ToListAsync();
+			return owners.ToDictionary(x => x.Id);
+		}
 
-        public IEnumerable<Owner> GetAll() => _context.Owners.ToList();
+		public void Delete(Owner owner)
+		{
+			_context.Remove(owner);
+			_context.SaveChanges();
+		}
 
-        public Owner GetById(Guid id) => _context.Owners.SingleOrDefault(x => x.Id.Equals(id));
+		public async Task<IEnumerable<Owner>> GetAllAsync() => await _context.Owners.ToListAsync();
 
-        public async Task<IDictionary<Guid, Owner>> DataLoaderOwnersByIdAsync(IEnumerable<Guid> ownerIds)
-        {
-            var owners = await _context.Owners.Where(a => ownerIds.Contains(a.Id)).ToListAsync();
-            return owners.ToDictionary(x => x.Id);
-        }
+		public async Task<Owner> GetByIdAsync(Guid id) => await _context.Owners.SingleOrDefaultAsync(x => x.Id.Equals(id));
 
-        public Owner UpdateOwner(Owner dbOwner, Owner owner)
-        {
-            dbOwner.Name = owner.Name;
-            dbOwner.Address = owner.Address;
-            _context.SaveChanges();
-            return dbOwner;
-        }
-    }
+		public async Task<Owner> UpdateAsync(Owner dbOwner, Owner owner)
+		{
+			dbOwner.Name = owner.Name;
+			dbOwner.Address = owner.Address;
+			await _context.SaveChangesAsync();
+			return dbOwner;
+		}
+	}
 }

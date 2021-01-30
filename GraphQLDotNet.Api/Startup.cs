@@ -18,68 +18,69 @@ using Microsoft.OpenApi.Models;
 
 namespace GraphQLDotNet.Api
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Database connection config
-            string connectionStr = Configuration.GetConnectionString("mysqlConString");
-            services.AddDbContext<ApplicationContext>(opt => opt.UseMySql(connectionStr, ServerVersion.AutoDetect(connectionStr)));
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+				app.UseSwagger();
+				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GraphQLDotNet.Api v1"));
+			}
 
-            // Repositories
-            services.AddScoped<IOwnerRepository, OwnerRepository>();
-            services.AddScoped<IAccountRepository, AccountRepository>();
+			app.UseHttpsRedirection();
 
-            // GraphQL Resolvers
-            services.AddScoped<IOwnerResolver, OwnerResolver>();
-            services.AddScoped<IAccountResolver, AccountResolver>();
+			app.UseRouting();
 
-            // GraphQL config
-            services.AddScoped<AppSchema>();
-            services.AddGraphQL()
-                .AddSystemTextJson()
-                .AddGraphTypes(typeof(AppSchema), ServiceLifetime.Scoped)
-                .AddDataLoader();
+			app.UseAuthorization();
 
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GraphQLDotNet.Api", Version = "v1" });
-            });
-        }
+			// GraphQL middleware config
+			app.UseGraphQL<AppSchema>();
+			// GraphQL playground config
+			app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GraphQLDotNet.Api v1"));
-            }
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllers();
+			});
+		}
 
-            app.UseHttpsRedirection();
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
+			// Database connection config
+			string connectionStr = Configuration.GetConnectionString("mysqlConString");
+			services.AddDbContext<ApplicationContext>(opt => opt.UseMySql(connectionStr, ServerVersion.AutoDetect(connectionStr)));
 
-            app.UseRouting();
+			// Repositories
+			services.AddScoped<IOwnerRepository, OwnerRepository>();
+			services.AddScoped<IAccountRepository, AccountRepository>();
 
-            app.UseAuthorization();
+			// GraphQL Resolvers
+			services.AddScoped<IOwnerResolver, OwnerResolver>();
+			services.AddScoped<IAccountResolver, AccountResolver>();
 
-            // GraphQL playground config
-            app.UseGraphQL<AppSchema>();
-            app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
+			// GraphQL config
+			services.AddScoped<AppSchema>();
+			services.AddGraphQL()
+				.AddSystemTextJson()
+				.AddGraphTypes(typeof(AppSchema), ServiceLifetime.Scoped)
+				.AddDataLoader();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
-    }
+			services.AddControllers();
+			services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc("v1", new OpenApiInfo { Title = "GraphQLDotNet.Api", Version = "v1" });
+			});
+		}
+	}
 }

@@ -33,10 +33,13 @@ type Query {
 
 type OwnerType {
   accounts: [AccountType]
+
   # Address property from the owner object.
   address: String!
+
   # Id property from the owner object.
   id: ID
+
   # Name property from the owner object.
   name: String!
 }
@@ -44,16 +47,18 @@ type OwnerType {
 type AccountType {
   # Description property from the account object.
   description: String!
+
   # Id property from the account object.
   id: ID
   owner: OwnerType
+
   # OwnerId property from the account object.
   ownerId: ID
-  type: AccountTypeEnumType
+  type: AccountTypeEnum
 }
 
 # Enumeration for the account type object.
-enum AccountTypeEnumType {
+enum AccountTypeEnum {
   CASH
   SAVINGS
   EXPENSE
@@ -61,12 +66,12 @@ enum AccountTypeEnumType {
 }
 
 type Mutation {
-  accountCreate(account: AccountInput!): AccountType
+  accountCreate(data: AccountInput!): AccountType
   accountDelete(accountId: ID!): String
-  accountUpdate(account: AccountInput!, accountId: String!): AccountType
-  ownerCreate(owner: OwnerInput!): OwnerType
+  accountUpdate(data: AccountInput!, accountId: String!): AccountType
+  ownerCreate(data: OwnerInput!): OwnerType
   ownerDelete(ownerId: ID!): String
-  ownerUpdate(owner: OwnerInput!, ownerId: String!): OwnerType
+  ownerUpdate(data: OwnerInput!, ownerId: String!): OwnerType
 }
 
 input OwnerInput {
@@ -75,7 +80,7 @@ input OwnerInput {
 }
 
 input AccountInput {
-  type: AccountTypeEnumType!
+  type: AccountTypeEnum!
   description: String
   ownerId: String!
 }
@@ -148,98 +153,82 @@ input AccountInput {
 
 ````graphql
 # Create an Owner
-mutation($owner: OwnerInput!) {
-  ownerCreate(owner: $owner) {
+mutation ownerCreate {
+  ownerCreate(data: { name: "New owner", address: "owner address" }) {
     id
     name
     address
-  }
-}
-# variables
-{
-  "owner": {
-    "name": "New owner",
-    "address": "owner address"
+    accounts {
+      id
+      description
+      ownerId
+      type
+    }
   }
 }
 
 # Update an Owner
-mutation($owner: OwnerInput!, $ownerId: String!) {
-  ownerUpdate(owner: $owner, ownerId: $ownerId) {
+mutation ownerUpdate {
+  ownerUpdate(
+    ownerId: "60a7d9f7-22b8-4901-aed1-fc21e208d4a0"
+    data: { name: "Update owner", address: "update address" }
+  ) {
     id
     name
     address
-  }
-}
-# variables
-{
-  "owner": {
-    "name": "update owner",
-    "address": "update address"
-  },
-  "ownerId": "d33e753f-8aed-4b48-bd6a-8c601fd25ac3"
-}
-
-# Delete an Owner
-mutation($ownerId: ID!) {
-	ownerDelete(ownerId: $ownerId)
-}
-# variables
-{
-  "ownerId": "d33e753f-8aed-4b48-bd6a-8c601fd25ac3"
-}
-
-# Create one Account
-mutation($account: AccountInput!) {
-  accountCreate(account: $account) {
-    id
-    description
-    type
-    ownerId
-    owner {
+    accounts {
       id
-      name
+      description
+      ownerId
+      type
     }
   }
 }
-# variables
-{
-  "account": {
-    "description": "New account",
-    "type": "Income",
-    "ownerId": "3e85e4e3-d02a-4d52-ba80-83c34be6e233"
+
+# Delete an Owner
+mutation ownerDelete {
+  ownerDelete(ownerId: "60a7d9f7-22b8-4901-aed1-fc21e208d4a0")
+}
+
+# Create one Account
+mutation accountCreate {
+  accountCreate(data: { description: "New owner", type: INCOME, ownerId: "5d3b52a0-d7ac-4584-a3d2-fde1f7905356" }) {
+    id
+    type
+    description
+    ownerId
+    owner {
+      id
+      address
+      name
+    }
   }
 }
 
 # Update an Account
-mutation($account: AccountInput!, $accountId: String!) {
-  accountUpdate(account: $account, accountId: $accountId) {
+mutation accountUpdate {
+  accountUpdate(
+    accountId: "1d203454-ca82-4e00-8f8d-00e87b2c14ca"
+    data: {
+      description: "Update owner"
+      type: EXPENSE
+      ownerId: "5d3b52a0-d7ac-4584-a3d2-fde1f7905356"
+    }
+  ) {
     id
-    description
     type
+    description
     ownerId
     owner {
       id
+      address
       name
     }
   }
 }
-# variables
-{
-  "account": {
-    "description": "Updated account",
-    "type": "Income",
-    "ownerId": "3e85e4e3-d02a-4d52-ba80-83c34be6e233"
-  },
-  "accountId": "e58dc519-f9f7-414c-bb24-5252e1abc548"
-}
 
 # Delete an Account
-mutation($accountId: ID!) {
-  accountDelete(accountId: $accountId)
-}
-# variables
-{
-  "accountId": "e58dc519-f9f7-414c-bb24-5252e1abc548"
+mutation accountDelete {
+  accountDelete(accountId: "1d203454-ca82-4e00-8f8d-00e87b2c14ca")
 }
 ````

@@ -1,4 +1,4 @@
-﻿using GraphQLDotNet.Data.Entities;
+using GraphQLDotNet.Data.Entities;
 
 using System;
 using System.Collections.Generic;
@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Data.Repository.Contracts
 {
-    public interface IOwnerRepository
-    {
-        IEnumerable<Owner> GetAll();
+	public interface IOwnerRepository
+	{
+		Task<Owner> CreateAsync(Owner owner);
 
-        Owner GetById(Guid id);
+		Task<IDictionary<Guid, Owner>> DataLoaderOwnersByIdAsync(IEnumerable<Guid> ownerIds);
 
-        Task<IDictionary<Guid, Owner>> DataLoaderOwnersByIdAsync(IEnumerable<Guid> ownerIds);
+		void Delete(Owner owner);
 
-        Owner CreateOwner(Owner owner);
+		Task<IEnumerable<Owner>> GetAllAsync();
 
-        Owner UpdateOwner(Owner dbOwner, Owner owner);
+		Task<Owner> GetByIdAsync(Guid id);
 
-        void DeleteOwner(Owner owner);
-    }
+		Task<Owner> UpdateAsync(Owner dbOwner, Owner owner);
+	}
 }

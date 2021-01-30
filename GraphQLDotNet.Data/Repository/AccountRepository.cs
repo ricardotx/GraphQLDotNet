@@ -1,4 +1,4 @@
-﻿using GraphQLDotNet.Data.Context;
+using GraphQLDotNet.Data.Context;
 using GraphQLDotNet.Data.Entities;
 using GraphQLDotNet.Data.Repository.Contracts;
 
@@ -11,50 +11,50 @@ using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Data.Repository
 {
-    public class AccountRepository : IAccountRepository
-    {
-        private readonly ApplicationContext _context;
+	public class AccountRepository : IAccountRepository
+	{
+		private readonly ApplicationContext _context;
 
-        public AccountRepository(ApplicationContext context)
-        {
-            _context = context;
-        }
+		public AccountRepository(ApplicationContext context)
+		{
+			_context = context;
+		}
 
-        public Account CreateAccount(Account account)
-        {
-            account.Id = Guid.NewGuid();
-            _context.Add(account);
-            _context.SaveChanges();
-            return account;
-        }
+		public async Task<Account> CreateAsync(Account account)
+		{
+			account.Id = Guid.NewGuid();
+			await _context.AddAsync(account);
+			await _context.SaveChangesAsync();
+			return account;
+		}
 
-        public async Task<ILookup<Guid, Account>> DataLoaderAccountsByOwnerIdsAsync(IEnumerable<Guid> ownerIds)
-        {
-            var accounts = await _context.Accounts.Where(a => ownerIds.Contains(a.OwnerId)).ToListAsync();
-            return accounts.ToLookup(x => x.OwnerId);
-        }
+		public async Task<ILookup<Guid, Account>> DataLoaderAccountsByOwnerIdsAsync(IEnumerable<Guid> ownerIds)
+		{
+			var accounts = await _context.Accounts.Where(a => ownerIds.Contains(a.OwnerId)).ToListAsync();
+			return accounts.ToLookup(x => x.OwnerId);
+		}
 
-        public void DeleteAccount(Account account)
-        {
-            _context.Remove(account);
-            _context.SaveChanges();
-        }
+		public void Delete(Account account)
+		{
+			_context.Remove(account);
+			_context.SaveChanges();
+		}
 
-        public IEnumerable<Account> GetAll() => _context.Accounts.ToList();
+		public async Task<IEnumerable<Account>> GetAllAsync() => await _context.Accounts.ToListAsync();
 
-        public IEnumerable<Account> GetAllAccountsPerOwner(Guid ownerId) => _context.Accounts
-            .Where(a => a.OwnerId.Equals(ownerId))
-            .ToList();
+		public async Task<IEnumerable<Account>> GetAllPerOwnerAsync(Guid ownerId) => await _context.Accounts
+			.Where(a => a.OwnerId.Equals(ownerId))
+			.ToListAsync();
 
-        public Account GetById(Guid id) => _context.Accounts.SingleOrDefault(x => x.Id.Equals(id));
+		public async Task<Account> GetByIdAsync(Guid id) => await _context.Accounts.SingleOrDefaultAsync(x => x.Id.Equals(id));
 
-        public Account UpdateAccount(Account dbAccount, Account account)
-        {
-            dbAccount.Description = account.Description;
-            dbAccount.Type = account.Type;
-            dbAccount.OwnerId = account.OwnerId;
-            _context.SaveChanges();
-            return dbAccount;
-        }
-    }
+		public async Task<Account> UpdateAsync(Account dbAccount, Account account)
+		{
+			dbAccount.Description = account.Description;
+			dbAccount.Type = account.Type;
+			dbAccount.OwnerId = account.OwnerId;
+			await _context.SaveChangesAsync();
+			return dbAccount;
+		}
+	}
 }

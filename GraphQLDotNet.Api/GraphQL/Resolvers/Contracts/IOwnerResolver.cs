@@ -1,24 +1,25 @@
-﻿using GraphQL;
+using GraphQL;
 using GraphQL.DataLoader;
 
 using GraphQLDotNet.Data.Entities;
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Api.GraphQL.Resolvers.Contracts
 {
-    public interface IOwnerResolver
-    {
-        IDataLoaderResult<IEnumerable<Account>> DataLoaderAccounts(IResolveFieldContext<Owner> context, IDataLoaderContextAccessor dataLoader);
+	public interface IOwnerResolver
+	{
+		IDataLoaderResult<IEnumerable<Account>> DataLoaderAccounts(IResolveFieldContext<Owner> context, IDataLoaderContextAccessor dataLoader);
 
-        Owner QueryOwner(IResolveFieldContext context);
+		Task<Owner> OwnerAsync(IResolveFieldContext context);
 
-        IEnumerable<Owner> QueryOwners();
+		Task<Owner> OwnerCreateAsync(IResolveFieldContext context);
 
-        Owner MutationOwnerCreate(IResolveFieldContext context);
+		Task<string> OwnerDeleteAsync(IResolveFieldContext context);
 
-        Owner MutationOwnerUpdate(IResolveFieldContext context);
+		Task<IEnumerable<Owner>> OwnersAsync();
 
-        string MutationOwnerDelete(IResolveFieldContext context);
-    }
+		Task<Owner> OwnerUpdateAsync(IResolveFieldContext context);
+	}
 }
