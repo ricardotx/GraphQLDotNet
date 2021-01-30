@@ -1,4 +1,4 @@
-using GraphQLDotNet.Data.Entities;
+using GraphQLDotNet.Data.Models;
 
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,5 @@
 using GraphQLDotNet.Data.Context;
-using GraphQLDotNet.Data.Entities;
+using GraphQLDotNet.Data.Models;
 using GraphQLDotNet.Data.Repository.Contracts;
 
 using Microsoft.EntityFrameworkCore;

@@ -2,7 +2,7 @@ using GraphQL;
 using GraphQL.DataLoader;
 
 using GraphQLDotNet.Api.GraphQL.Resolvers.Contracts;
-using GraphQLDotNet.Data.Entities;
+using GraphQLDotNet.Data.Models;
 using GraphQLDotNet.Data.Repository.Contracts;
 
 using System;
