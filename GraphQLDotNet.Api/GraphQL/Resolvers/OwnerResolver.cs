@@ -4,6 +4,7 @@ using GraphQL.DataLoader;
 using GraphQLDotNet.Api.GraphQL.Resolvers.Contracts;
 using GraphQLDotNet.Data.Models;
 using GraphQLDotNet.Data.Repository.Contracts;
+using GraphQLDotNet.Services.Contracts;
 
 using System;
 using System.Collections.Generic;
@@ -13,75 +14,72 @@ namespace GraphQLDotNet.Api.GraphQL.Resolvers
 {
 	public class OwnerResolver : IOwnerResolver
 	{
-		private readonly IAccountRepository _accountRepo;
-		private readonly IOwnerRepository _repo;
+		private readonly IDataLoaderRepository _dataLoaderRepo;
+		private readonly IOwnerService _ownerService;
 
-		public OwnerResolver(IOwnerRepository repo, IAccountRepository accountRepo)
+		public OwnerResolver(IOwnerService ownerService, IDataLoaderRepository dataLoaderRepo)
 		{
-			_repo = repo;
-			_accountRepo = accountRepo;
+			_ownerService = ownerService;
+			_dataLoaderRepo = dataLoaderRepo;
 		}
 
-		public IDataLoaderResult<IEnumerable<Account>> DataLoaderAccounts(IResolveFieldContext<Owner> context, IDataLoaderContextAccessor dataLoader)
+		public IDataLoaderResult<IEnumerable<Account>> AccountsAsync(IResolveFieldContext<Owner> context, IDataLoaderContextAccessor dataLoader)
 		{
-			var loader = dataLoader.Context.GetOrAddCollectionBatchLoader<Guid, Account>(nameof(_accountRepo.DataLoaderAccountsByOwnerIdsAsync),
-				_accountRepo.DataLoaderAccountsByOwnerIdsAsync);
+			var loader = dataLoader.Context.GetOrAddCollectionBatchLoader<Guid, Account>(nameof(_dataLoaderRepo.AccountsByOwnerIdsAsync),
+				_dataLoaderRepo.AccountsByOwnerIdsAsync);
 
 			return loader.LoadAsync(context.Source.Id);
 		}
 
 		public async Task<Owner> OwnerAsync(IResolveFieldContext context)
 		{
-			Guid id;
+			Guid ownerId;
 
-			if (!Guid.TryParse(context.GetArgument<string>("ownerId"), out id))
+			if (!Guid.TryParse(context.GetArgument<string>(nameof(ownerId)), out ownerId))
 			{
 				context.Errors.Add(new ExecutionError("Wrong value for guid"));
 				return null;
 			}
 
-			return await _repo.GetByIdAsync(id);
+			return await _ownerService.GetOwnerAsync(ownerId);
 		}
 
 		public async Task<Owner> OwnerCreateAsync(IResolveFieldContext context)
 		{
-			var owner = context.GetArgument<Owner>("data");
-			return await _repo.CreateAsync(owner);
+			var data = context.GetArgument<Owner>("data");
+
+			var owner = new Owner
+			{
+				Name = data.Name,
+				Address = data.Address
+			};
+
+			return await _ownerService.CreateOwnerAsync(owner);
 		}
 
 		public async Task<string> OwnerDeleteAsync(IResolveFieldContext context)
 		{
 			var ownerId = context.GetArgument<Guid>("ownerId");
-			var owner = await _repo.GetByIdAsync(ownerId);
-
-			if (owner == null)
-			{
-				context.Errors.Add(new ExecutionError("Couldn't find owner in db."));
-				return null;
-			}
-
-			_repo.Delete(owner);
-			return $"The owner with the id: {ownerId} has been successfully deleted from db.";
+			return await _ownerService.DeleteOwnerAsync(ownerId);
 		}
 
 		public async Task<IEnumerable<Owner>> OwnersAsync()
 		{
-			return await _repo.GetAllAsync();
+			return await _ownerService.GetOwnersAsync();
 		}
 
 		public async Task<Owner> OwnerUpdateAsync(IResolveFieldContext context)
 		{
-			var owner = context.GetArgument<Owner>("data");
+			var data = context.GetArgument<Owner>("data");
 			var ownerId = context.GetArgument<Guid>("ownerId");
-			var dbOwner = await _repo.GetByIdAsync(ownerId);
 
-			if (dbOwner == null)
+			var owner = new Owner
 			{
-				context.Errors.Add(new ExecutionError("Couldn't find owner in db."));
-				return null;
-			}
+				Name = data.Name,
+				Address = data.Address
+			};
 
-			return await _repo.UpdateAsync(dbOwner, owner);
+			return await _ownerService.UpdateOwnerAsync(ownerId, owner);
 		}
 	}
 }

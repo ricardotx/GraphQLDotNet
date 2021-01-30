@@ -10,8 +10,6 @@ namespace GraphQLDotNet.Data.Repository.Contracts
 	{
 		Task<Owner> CreateAsync(Owner owner);
 
-		Task<IDictionary<Guid, Owner>> DataLoaderOwnersByIdAsync(IEnumerable<Guid> ownerIds);
-
 		void Delete(Owner owner);
 
 		Task<IEnumerable<Owner>> GetAllAsync();

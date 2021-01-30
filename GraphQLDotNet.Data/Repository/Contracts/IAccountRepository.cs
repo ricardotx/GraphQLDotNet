@@ -2,7 +2,6 @@ using GraphQLDotNet.Data.Models;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Data.Repository.Contracts
@@ -10,8 +9,6 @@ namespace GraphQLDotNet.Data.Repository.Contracts
 	public interface IAccountRepository
 	{
 		Task<Account> CreateAsync(Account account);
-
-		Task<ILookup<Guid, Account>> DataLoaderAccountsByOwnerIdsAsync(IEnumerable<Guid> ownerIds);
 
 		void Delete(Account account);
 

@@ -28,12 +28,6 @@ namespace GraphQLDotNet.Data.Repository
 			return account;
 		}
 
-		public async Task<ILookup<Guid, Account>> DataLoaderAccountsByOwnerIdsAsync(IEnumerable<Guid> ownerIds)
-		{
-			var accounts = await _context.Accounts.Where(a => ownerIds.Contains(a.OwnerId)).ToListAsync();
-			return accounts.ToLookup(x => x.OwnerId);
-		}
-
 		public void Delete(Account account)
 		{
 			_context.Remove(account);

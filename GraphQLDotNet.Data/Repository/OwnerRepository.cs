@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Data.Repository
@@ -26,12 +25,6 @@ namespace GraphQLDotNet.Data.Repository
 			await _context.AddAsync(owner);
 			await _context.SaveChangesAsync();
 			return owner;
-		}
-
-		public async Task<IDictionary<Guid, Owner>> DataLoaderOwnersByIdAsync(IEnumerable<Guid> ownerIds)
-		{
-			var owners = await _context.Owners.Where(a => ownerIds.Contains(a.Id)).ToListAsync();
-			return owners.ToDictionary(x => x.Id);
 		}
 
 		public void Delete(Owner owner)

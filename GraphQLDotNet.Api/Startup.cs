@@ -7,6 +7,8 @@ using GraphQLDotNet.Api.GraphQL.Resolvers.Contracts;
 using GraphQLDotNet.Data.Context;
 using GraphQLDotNet.Data.Repository;
 using GraphQLDotNet.Data.Repository.Contracts;
+using GraphQLDotNet.Services;
+using GraphQLDotNet.Services.Contracts;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -62,8 +64,13 @@ namespace GraphQLDotNet.Api
 			services.AddDbContext<ApplicationContext>(opt => opt.UseMySql(connectionStr, ServerVersion.AutoDetect(connectionStr)));
 
 			// Repositories
+			services.AddScoped<IDataLoaderRepository, DataLoaderRepository>();
 			services.AddScoped<IOwnerRepository, OwnerRepository>();
 			services.AddScoped<IAccountRepository, AccountRepository>();
+
+			// Services
+			services.AddScoped<IOwnerService, OwnerService>();
+			services.AddScoped<IAccountService, AccountService>();
 
 			// GraphQL Resolvers
 			services.AddScoped<IOwnerResolver, OwnerResolver>();
