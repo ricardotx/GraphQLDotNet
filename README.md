@@ -35,21 +35,21 @@ type OwnerType {
   accounts: [AccountType]
 
   # Address property from the owner object.
-  address: String!
+  address: String
 
   # Id property from the owner object.
-  id: ID
+  id: ID!
 
   # Name property from the owner object.
-  name: String!
+  name: String
 }
 
 type AccountType {
   # Description property from the account object.
-  description: String!
+  description: String
 
   # Id property from the account object.
-  id: ID
+  id: ID!
   owner: OwnerType
 
   # OwnerId property from the account object.
@@ -76,13 +76,13 @@ type Mutation {
 
 input OwnerInput {
   name: String!
-  address: String!
+  address: String
 }
 
 input AccountInput {
   type: AccountTypeEnum!
-  description: String
-  ownerId: String!
+  description: String!
+  ownerId: String
 }
 ````
 
