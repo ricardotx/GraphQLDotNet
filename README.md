@@ -1,7 +1,7 @@
 # Dotnet API with Graphql using [GraphQL.NET](https://github.com/graphql-dotnet/graphql-dotnet)
 * Code-First approach.
-* Data Loader implementation.
 * Code splitting.
+* Data Loader implementation.
 
 📣 *This is a self study project to allow me to better understand the `GraphQL` in the `.Net` environment and **not** a production ready API.*
 
