@@ -37,6 +37,8 @@ namespace GraphQLDotNet.Api
 				app.UseDeveloperExceptionPage();
 				app.UseSwagger();
 				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GraphQLDotNet.Api v1"));
+				// GraphQL playground config (Only in dev)
+				app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
 			}
 
 			app.UseHttpsRedirection();
@@ -45,10 +47,8 @@ namespace GraphQLDotNet.Api
 
 			app.UseAuthorization();
 
-			// GraphQL middleware config
+			// GraphQL
 			app.UseGraphQL<AppSchema>();
-			// GraphQL playground config
-			app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
 
 			app.UseEndpoints(endpoints =>
 			{
@@ -67,6 +67,8 @@ namespace GraphQLDotNet.Api
 			services.AddScoped<IDataLoaderRepository, DataLoaderRepository>();
 			services.AddScoped<IOwnerRepository, OwnerRepository>();
 			services.AddScoped<IAccountRepository, AccountRepository>();
+			services.AddScoped<IRoleRepository, RoleRepository>();
+			services.AddScoped<IUserRepository, UserRepository>();
 
 			// Services
 			services.AddScoped<IOwnerService, OwnerService>();
