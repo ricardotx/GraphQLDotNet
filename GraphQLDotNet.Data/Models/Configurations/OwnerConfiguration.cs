@@ -1,11 +1,9 @@
-using GraphQLDotNet.Data.Models;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 using System;
 
-namespace GraphQLDotNet.Data.Context.Configurations
+namespace GraphQLDotNet.Data.Models.Configurations
 {
 	public class OwnerConfiguration : IEntityTypeConfiguration<Owner>
 	{
