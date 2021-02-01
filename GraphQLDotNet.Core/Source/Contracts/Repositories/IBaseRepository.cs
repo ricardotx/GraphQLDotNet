@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Core.Source.Contracts.Repositories
 {
-	public interface IRepository<TEntity> where TEntity : class
+	public interface IBaseRepository<TEntity> where TEntity : class
 	{
 		/// <summary>
 		/// Add a new entity
@@ -46,10 +46,5 @@ namespace GraphQLDotNet.Core.Source.Contracts.Repositories
 		/// Remove one entity
 		/// </summary>
 		void Remove(TEntity entity);
-
-		/// <summary>
-		/// Save all changes made to the database
-		/// </summary>
-		Task SaveChangesAsync();
 	}
 }

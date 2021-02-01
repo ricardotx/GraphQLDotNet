@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Core.Source.Contracts.Repositories
 {
-	public interface IUserRepository : IRepository<User>
+	public interface IUserRepository : IBaseRepository<User>
 	{
 		/// <summary>
 		/// Find all users with role included that satisfy the given lambda expression

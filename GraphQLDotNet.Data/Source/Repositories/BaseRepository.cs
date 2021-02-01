@@ -9,18 +9,19 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Data.Source.Repository
+namespace GraphQLDotNet.Data.Source.Repositories
 {
-	public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+	public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
 	{
 		protected readonly ApplicationContext _context;
 
-		public Repository(ApplicationContext context)
+		public BaseRepository(ApplicationContext context)
 		{
 			_context = context;
 		}
 
-		public async Task AddAsync(TEntity entity)
+		// Set this as a virtual method to allow us to override this implementation when we need it!
+		public virtual async Task AddAsync(TEntity entity)
 		{
 			await _context.Set<TEntity>().AddAsync(entity);
 		}
@@ -58,11 +59,6 @@ namespace GraphQLDotNet.Data.Source.Repository
 		public void Remove(TEntity entity)
 		{
 			_context.Set<TEntity>().Remove(entity);
-		}
-
-		public async Task SaveChangesAsync()
-		{
-			await _context.SaveChangesAsync();
 		}
 	}
 }

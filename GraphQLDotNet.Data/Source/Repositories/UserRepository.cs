@@ -10,15 +10,21 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Data.Source.Repository
+namespace GraphQLDotNet.Data.Source.Repositories
 {
-	public class UserRepository : Repository<User>, IUserRepository
+	public class UserRepository : BaseRepository<User>, IUserRepository
 	{
 		private readonly ApplicationContext _db;
 
 		public UserRepository(ApplicationContext context) : base(context)
 		{
 			_db = context;
+		}
+
+		public override async Task AddAsync(User user)
+		{
+			user.Id = Guid.NewGuid();
+			await _db.Users.AddAsync(user);
 		}
 
 		public async Task<IEnumerable<User>> FindAllWithRoleAsync(Expression<Func<User, bool>> expression)

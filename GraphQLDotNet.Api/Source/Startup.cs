@@ -3,11 +3,11 @@ using GraphQL.Server.Ui.Playground;
 
 using GraphQLDotNet.Api.Source.GraphQL;
 using GraphQLDotNet.Api.Source.Resolvers;
-using GraphQLDotNet.Core.Source.Contracts.Repositories;
+using GraphQLDotNet.Core.Source.Contracts;
 using GraphQLDotNet.Core.Source.Contracts.Resolvers;
 using GraphQLDotNet.Core.Source.Contracts.Services;
+using GraphQLDotNet.Data.Source;
 using GraphQLDotNet.Data.Source.Context;
-using GraphQLDotNet.Data.Source.Repository;
 using GraphQLDotNet.Services.Source;
 
 using Microsoft.AspNetCore.Builder;
@@ -47,7 +47,7 @@ namespace GraphQLDotNet.Api.Source
 
 			app.UseAuthorization();
 
-			// GraphQL
+			// GraphQL enpoint
 			app.UseGraphQL<AppSchema>();
 
 			app.UseEndpoints(endpoints =>
@@ -63,12 +63,8 @@ namespace GraphQLDotNet.Api.Source
 			string connectionStr = Configuration.GetConnectionString("mysqlConString");
 			services.AddDbContext<ApplicationContext>(opt => opt.UseMySql(connectionStr, ServerVersion.AutoDetect(connectionStr)));
 
-			// Repositories
-			services.AddScoped<IDataLoaderRepository, DataLoaderRepository>();
-			services.AddScoped<IOwnerRepository, OwnerRepository>();
-			services.AddScoped<IAccountRepository, AccountRepository>();
-			services.AddScoped<IRoleRepository, RoleRepository>();
-			services.AddScoped<IUserRepository, UserRepository>();
+			// Repository
+			services.AddScoped<IRepository, Repository>();
 
 			// Services
 			services.AddScoped<IOwnerService, OwnerService>();

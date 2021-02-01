@@ -1,7 +1,7 @@
 using GraphQL;
 using GraphQL.DataLoader;
 
-using GraphQLDotNet.Core.Source.Contracts.Repositories;
+using GraphQLDotNet.Core.Source.Contracts;
 using GraphQLDotNet.Core.Source.Contracts.Resolvers;
 using GraphQLDotNet.Core.Source.Contracts.Services;
 using GraphQLDotNet.Core.Source.Models;
@@ -15,12 +15,12 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 	public class AccountResolver : IAccountResolver
 	{
 		private readonly IAccountService _accountService;
-		private readonly IDataLoaderRepository _dataLoaderRepo;
+		private readonly IRepository _repo;
 
-		public AccountResolver(IAccountService accountService, IDataLoaderRepository dataLoaderRepo)
+		public AccountResolver(IAccountService accountService, IRepository repo)
 		{
 			_accountService = accountService;
-			_dataLoaderRepo = dataLoaderRepo;
+			_repo = repo;
 		}
 
 		public async Task<Account> AccountAsync(IResolveFieldContext context)
@@ -38,8 +38,14 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 
 		public async Task<Account> AccountCreateAsync(IResolveFieldContext context)
 		{
-			var owner = context.GetArgument<Account>("data");
-			return await _accountService.CreateAccountAsync(owner);
+			var data = context.GetArgument<Account>("data");
+			var account = new Account()
+			{
+				Description = data.Description,
+				Type = data.Type,
+				OwnerId = data.OwnerId,
+			};
+			return await _accountService.CreateAccountAsync(account);
 		}
 
 		public async Task<string> AccountDeleteAsync(IResolveFieldContext context)
@@ -62,7 +68,7 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 
 		public IDataLoaderResult<Owner> OwnerAsync(IResolveFieldContext<Account> context, IDataLoaderContextAccessor dataLoader)
 		{
-			var loader = dataLoader.Context.GetOrAddBatchLoader<Guid, Owner>(nameof(_dataLoaderRepo.OwnersByIdAsync), _dataLoaderRepo.OwnersByIdAsync);
+			var loader = dataLoader.Context.GetOrAddBatchLoader<Guid, Owner>(nameof(_repo.DataLoader.OwnersByIdAsync), _repo.DataLoader.OwnersByIdAsync);
 			return loader.LoadAsync(context.Source.OwnerId);
 		}
 	}

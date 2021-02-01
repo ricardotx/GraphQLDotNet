@@ -6,18 +6,8 @@ using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Core.Source.Contracts.Repositories
 {
-	public interface IAccountRepository
+	public interface IAccountRepository : IBaseRepository<Account>
 	{
-		Task<Account> CreateAsync(Account account);
-
-		void Delete(Account account);
-
-		Task<IEnumerable<Account>> GetAllAsync();
-
 		Task<IEnumerable<Account>> GetAllPerOwnerAsync(Guid ownerId);
-
-		Task<Account> GetByIdAsync(Guid id);
-
-		Task<Account> UpdateAsync(Account dbAccount, Account account);
 	}
 }

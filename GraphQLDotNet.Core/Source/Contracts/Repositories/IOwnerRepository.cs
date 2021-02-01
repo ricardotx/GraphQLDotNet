@@ -1,21 +1,9 @@
 using GraphQLDotNet.Core.Source.Models;
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace GraphQLDotNet.Core.Source.Contracts.Repositories
 {
-	public interface IOwnerRepository
+	public interface IOwnerRepository : IBaseRepository<Owner>
 	{
-		Task<Owner> CreateAsync(Owner owner);
-
-		void Delete(Owner owner);
-
-		Task<IEnumerable<Owner>> GetAllAsync();
-
-		Task<Owner> GetByIdAsync(Guid id);
-
-		Task<Owner> UpdateAsync(Owner dbOwner, Owner owner);
+		// We only need a method that already exists in the BaseRepository
 	}
 }

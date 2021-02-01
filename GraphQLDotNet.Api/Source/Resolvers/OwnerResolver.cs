@@ -1,7 +1,7 @@
 using GraphQL;
 using GraphQL.DataLoader;
 
-using GraphQLDotNet.Core.Source.Contracts.Repositories;
+using GraphQLDotNet.Core.Source.Contracts;
 using GraphQLDotNet.Core.Source.Contracts.Resolvers;
 using GraphQLDotNet.Core.Source.Contracts.Services;
 using GraphQLDotNet.Core.Source.Models;
@@ -14,19 +14,19 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 {
 	public class OwnerResolver : IOwnerResolver
 	{
-		private readonly IDataLoaderRepository _dataLoaderRepo;
 		private readonly IOwnerService _ownerService;
+		private readonly IRepository _repo;
 
-		public OwnerResolver(IOwnerService ownerService, IDataLoaderRepository dataLoaderRepo)
+		public OwnerResolver(IOwnerService ownerService, IRepository repo)
 		{
 			_ownerService = ownerService;
-			_dataLoaderRepo = dataLoaderRepo;
+			_repo = repo;
 		}
 
 		public IDataLoaderResult<IEnumerable<Account>> AccountsAsync(IResolveFieldContext<Owner> context, IDataLoaderContextAccessor dataLoader)
 		{
-			var loader = dataLoader.Context.GetOrAddCollectionBatchLoader<Guid, Account>(nameof(_dataLoaderRepo.AccountsByOwnerIdsAsync),
-				_dataLoaderRepo.AccountsByOwnerIdsAsync);
+			var loader = dataLoader.Context.GetOrAddCollectionBatchLoader<Guid, Account>(nameof(_repo.DataLoader.AccountsByOwnerIdsAsync),
+				_repo.DataLoader.AccountsByOwnerIdsAsync);
 
 			return loader.LoadAsync(context.Source.Id);
 		}

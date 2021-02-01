@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Data.Source.Repository
+namespace GraphQLDotNet.Data.Source.Repositories
 {
 	public class DataLoaderRepository : IDataLoaderRepository
 	{
