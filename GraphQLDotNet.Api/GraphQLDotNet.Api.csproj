@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GraphQLDotNet.Auth\GraphQLDotNet.Auth.csproj" />
+    <ProjectReference Include="..\GraphQLDotNet.Core\GraphQLDotNet.Core.csproj" />
     <ProjectReference Include="..\GraphQLDotNet.Data\GraphQLDotNet.Data.csproj" />
     <ProjectReference Include="..\GraphQLDotNet.Services\GraphQLDotNet.Services.csproj" />
   </ItemGroup>

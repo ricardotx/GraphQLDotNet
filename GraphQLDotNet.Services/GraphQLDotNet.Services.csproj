@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GraphQLDotNet.Core\GraphQLDotNet.Core.csproj" />
     <ProjectReference Include="..\GraphQLDotNet.Data\GraphQLDotNet.Data.csproj" />
   </ItemGroup>
 

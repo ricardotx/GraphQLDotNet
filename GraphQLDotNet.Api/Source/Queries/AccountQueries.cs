@@ -1,0 +1,24 @@
+using GraphQL.Types;
+
+using GraphQLDotNet.Api.Source.Types;
+using GraphQLDotNet.Core.Source.Contracts.Resolvers;
+
+namespace GraphQLDotNet.Api.Source.Queries
+{
+	public partial class RootQuery
+	{
+		protected void AccountQueriesFactory(IAccountResolver resolvers)
+		{
+			Field<ListGraphType<AccountType>>(
+			   "accounts",
+			   resolve: context => resolvers.AccountsAsync()
+		   );
+
+			Field<AccountType>(
+				"account",
+				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "accountId" }),
+				resolve: context => resolvers.AccountAsync(context)
+			);
+		}
+	}
+}
