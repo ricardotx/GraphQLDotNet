@@ -39,13 +39,7 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 		public async Task<Account> AccountCreateAsync(IResolveFieldContext context)
 		{
 			var data = context.GetArgument<Account>("data");
-			var account = new Account()
-			{
-				Description = data.Description,
-				Type = data.Type,
-				OwnerId = data.OwnerId,
-			};
-			return await _accountService.CreateAccountAsync(account);
+			return await _accountService.CreateAccountAsync(data);
 		}
 
 		public async Task<string> AccountDeleteAsync(IResolveFieldContext context)

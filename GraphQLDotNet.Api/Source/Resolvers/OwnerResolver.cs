@@ -47,14 +47,7 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 		public async Task<Owner> OwnerCreateAsync(IResolveFieldContext context)
 		{
 			var data = context.GetArgument<Owner>("data");
-
-			var owner = new Owner
-			{
-				Name = data.Name,
-				Address = data.Address
-			};
-
-			return await _ownerService.CreateOwnerAsync(owner);
+			return await _ownerService.CreateOwnerAsync(data);
 		}
 
 		public async Task<string> OwnerDeleteAsync(IResolveFieldContext context)
