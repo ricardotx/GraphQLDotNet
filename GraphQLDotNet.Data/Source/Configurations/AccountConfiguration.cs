@@ -20,6 +20,24 @@ namespace GraphQLDotNet.Data.Source.Configurations
 		public void Configure(EntityTypeBuilder<Account> builder)
 		{
 			builder
+				.HasKey(x => x.Id);
+
+			builder
+				.Property(x => x.Type)
+				.IsRequired();
+
+			builder
+			   .Property(x => x.OwnerId)
+			   .IsRequired();
+
+			// Constraints
+			builder
+				.HasOne(x => x.Owner)
+				.WithMany(x => x.Accounts)
+				.OnDelete(DeleteBehavior.Restrict);
+
+			// Seed data
+			builder
 				.HasData(
 				new Account
 				{
