@@ -2,9 +2,9 @@ using GraphQL.Types;
 
 namespace GraphQLDotNet.Api.Source.Types
 {
-	public class AccountInput : InputObjectGraphType
+	public class AccountInputType : InputObjectGraphType
 	{
-		public AccountInput()
+		public AccountInputType()
 		{
 			Name = "AccountInput";
 			Field<NonNullGraphType<AccountTypeEnumType>>("type");

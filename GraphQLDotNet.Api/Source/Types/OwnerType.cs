@@ -8,7 +8,10 @@ namespace GraphQLDotNet.Api.Source.Types
 {
 	public class OwnerType : ObjectGraphType<OwnerApiModel>
 	{
-		public OwnerType(IOwnerResolver resolver, IDataLoaderContextAccessor dataLoader)
+		public OwnerType(
+			IOwnerResolver resolver,
+			IDataLoaderContextAccessor dataLoader
+		)
 		{
 			Field(x => x.Id, type: typeof(NonNullGraphType<IdGraphType>)).Description("Id property from the owner object.");
 			Field(x => x.Name, type: typeof(StringGraphType)).Description("Name property from the owner object.");

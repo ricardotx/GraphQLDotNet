@@ -8,7 +8,10 @@ namespace GraphQLDotNet.Api.Source.Types
 {
 	public class AccountType : ObjectGraphType<AccountApiModel>
 	{
-		public AccountType(IAccountResolver resolver, IDataLoaderContextAccessor dataLoader)
+		public AccountType(
+			IAccountResolver resolver,
+			IDataLoaderContextAccessor dataLoader
+		)
 		{
 			Field(x => x.Id, type: typeof(NonNullGraphType<IdGraphType>)).Description("Id property from the account object.");
 			Field(x => x.Description, type: typeof(StringGraphType)).Description("Description property from the account object.");

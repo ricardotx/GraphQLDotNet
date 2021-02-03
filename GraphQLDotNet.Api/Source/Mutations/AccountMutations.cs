@@ -11,14 +11,14 @@ namespace GraphQLDotNet.Api.Source.Mutations
 		{
 			Field<AccountType>(
 				"accountCreate",
-				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<AccountInput>> { Name = "data" }),
+				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<AccountInputType>> { Name = "data" }),
 				resolve: context => resolvers.AccountCreateAsync(context)
 			);
 
 			Field<AccountType>(
 				"accountUpdate",
 				arguments: new QueryArguments(
-					new QueryArgument<NonNullGraphType<AccountInput>> { Name = "data" },
+					new QueryArgument<NonNullGraphType<AccountInputType>> { Name = "data" },
 					new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "accountId" }),
 				resolve: context => resolvers.AccountUpdateAsync(context)
 			);

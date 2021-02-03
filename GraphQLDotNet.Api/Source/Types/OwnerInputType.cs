@@ -2,9 +2,9 @@ using GraphQL.Types;
 
 namespace GraphQLDotNet.Api.Source.Types
 {
-	public class OwnerInput : InputObjectGraphType
+	public class OwnerInputType : InputObjectGraphType
 	{
-		public OwnerInput()
+		public OwnerInputType()
 		{
 			Name = "OwnerInput";
 			Field<NonNullGraphType<StringGraphType>>("name");

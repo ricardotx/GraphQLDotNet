@@ -11,14 +11,14 @@ namespace GraphQLDotNet.Api.Source.Mutations
 		{
 			Field<OwnerType>(
 				"ownerCreate",
-				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<OwnerInput>> { Name = "data" }),
+				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<OwnerInputType>> { Name = "data" }),
 				resolve: context => resolvers.OwnerCreateAsync(context)
 			);
 
 			Field<OwnerType>(
 				"ownerUpdate",
 				arguments: new QueryArguments(
-					new QueryArgument<NonNullGraphType<OwnerInput>> { Name = "data" },
+					new QueryArgument<NonNullGraphType<OwnerInputType>> { Name = "data" },
 					new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "ownerId" }),
 				resolve: context => resolvers.OwnerUpdateAsync(context)
 			);
