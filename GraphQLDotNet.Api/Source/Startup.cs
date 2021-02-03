@@ -69,6 +69,7 @@ namespace GraphQLDotNet.Api.Source
 			// Services
 			services.AddScoped<IOwnerService, OwnerService>();
 			services.AddScoped<IAccountService, AccountService>();
+			services.AddScoped<IDataLoaderService, DataLoaderService>();
 
 			// GraphQL Resolvers
 			services.AddScoped<IOwnerResolver, OwnerResolver>();

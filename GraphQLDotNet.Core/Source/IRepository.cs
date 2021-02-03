@@ -8,7 +8,6 @@ namespace GraphQLDotNet.Core.Source
 	public interface IRepository : IDisposable
 	{
 		IAccountRepository Account { get; }
-		IDataLoaderRepository DataLoader { get; }
 		IOwnerRepository Owner { get; }
 		IRoleRepository Role { get; }
 		IUserRepository User { get; }

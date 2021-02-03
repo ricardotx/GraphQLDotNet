@@ -11,7 +11,6 @@ namespace GraphQLDotNet.Data.Source
 	{
 		private readonly ApplicationContext _context;
 		private AccountRepository _accountRepository;
-		private DataLoaderRepository _dataLoaderRepository;
 		private OwnerRepository _ownerRepository;
 		private RoleRepository _roleRepository;
 		private UserRepository _userRepository;
@@ -22,8 +21,6 @@ namespace GraphQLDotNet.Data.Source
 		}
 
 		public IAccountRepository Account => _accountRepository = _accountRepository ?? new AccountRepository(_context);
-
-		public IDataLoaderRepository DataLoader => _dataLoaderRepository = _dataLoaderRepository ?? new DataLoaderRepository(_context);
 
 		public IOwnerRepository Owner => _ownerRepository = _ownerRepository ?? new OwnerRepository(_context);
 

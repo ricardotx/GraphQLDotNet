@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Core.Source.Repositories
+namespace GraphQLDotNet.Core.Source.Services
 {
-	public interface IDataLoaderRepository
+	public interface IDataLoaderService
 	{
 		Task<ILookup<Guid, AccountApiModel>> AccountsByOwnerIdsAsync(IEnumerable<Guid> ownerIds);
 

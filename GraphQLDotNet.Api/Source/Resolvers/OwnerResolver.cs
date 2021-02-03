@@ -14,19 +14,29 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 {
 	public class OwnerResolver : IOwnerResolver
 	{
+		private readonly IDataLoaderService _dataLoaderService;
 		private readonly IOwnerService _ownerService;
 		private readonly IRepository _repo;
 
-		public OwnerResolver(IOwnerService ownerService, IRepository repo)
+		public OwnerResolver(
+			IOwnerService ownerService,
+			IDataLoaderService dataLoaderService,
+			IRepository repo
+		)
 		{
 			_ownerService = ownerService;
+			_dataLoaderService = dataLoaderService;
 			_repo = repo;
 		}
 
-		public IDataLoaderResult<IEnumerable<AccountApiModel>> AccountsAsync(IResolveFieldContext<OwnerApiModel> context, IDataLoaderContextAccessor dataLoader)
+		public IDataLoaderResult<IEnumerable<AccountApiModel>> AccountsAsync(
+			IResolveFieldContext<OwnerApiModel> context,
+			IDataLoaderContextAccessor dataLoader
+		)
 		{
-			var loader = dataLoader.Context.GetOrAddCollectionBatchLoader<Guid, AccountApiModel>(nameof(_repo.DataLoader.AccountsByOwnerIdsAsync),
-				_repo.DataLoader.AccountsByOwnerIdsAsync);
+			var loader = dataLoader.Context
+				.GetOrAddCollectionBatchLoader<Guid, AccountApiModel>(nameof(_dataLoaderService.AccountsByOwnerIdsAsync),
+				_dataLoaderService.AccountsByOwnerIdsAsync);
 
 			return loader.LoadAsync(context.Source.Id);
 		}

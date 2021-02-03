@@ -15,11 +15,17 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 	public class AccountResolver : IAccountResolver
 	{
 		private readonly IAccountService _accountService;
+		private readonly IDataLoaderService _dataLoaderService;
 		private readonly IRepository _repo;
 
-		public AccountResolver(IAccountService accountService, IRepository repo)
+		public AccountResolver(
+			IAccountService accountService,
+			IDataLoaderService dataLoaderService,
+			IRepository repo
+		)
 		{
 			_accountService = accountService;
+			_dataLoaderService = dataLoaderService;
 			_repo = repo;
 		}
 
@@ -60,9 +66,15 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 			return await _accountService.UpdateAccountAsync(accountId, account);
 		}
 
-		public IDataLoaderResult<OwnerApiModel> OwnerAsync(IResolveFieldContext<AccountApiModel> context, IDataLoaderContextAccessor dataLoader)
+		public IDataLoaderResult<OwnerApiModel> OwnerAsync(
+			IResolveFieldContext<AccountApiModel> context,
+			IDataLoaderContextAccessor dataLoader
+		)
 		{
-			var loader = dataLoader.Context.GetOrAddBatchLoader<Guid, OwnerApiModel>(nameof(_repo.DataLoader.OwnersByIdAsync), _repo.DataLoader.OwnersByIdAsync);
+			var loader = dataLoader.Context
+				.GetOrAddBatchLoader<Guid, OwnerApiModel>(nameof(_dataLoaderService.OwnersByIdAsync),
+				_dataLoaderService.OwnersByIdAsync);
+
 			return loader.LoadAsync(context.Source.OwnerId);
 		}
 	}
