@@ -1,3 +1,5 @@
+using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Converters;
 using GraphQLDotNet.Core.Source.Enums;
 
 using System;
@@ -6,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GraphQLDotNet.Core.Source.DataModels
 {
-	public class Account
+	public class Account : IConvertModel<Account, AccountApiModel>
 	{
 		public string Description { get; set; }
 
@@ -20,5 +22,16 @@ namespace GraphQLDotNet.Core.Source.DataModels
 
 		[Required(ErrorMessage = "Type is required")]
 		public AccountTypeEnum Type { get; set; }
+
+		public AccountApiModel Convert()
+		{
+			return new AccountApiModel
+			{
+				Id = Id,
+				Description = Description,
+				OwnerId = OwnerId,
+				Type = Type
+			};
+		}
 	}
 }

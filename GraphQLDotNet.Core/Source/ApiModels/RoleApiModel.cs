@@ -1,12 +1,12 @@
-using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Converters;
+using GraphQLDotNet.Core.Source.DataModels;
 
 using System;
 using System.Collections.Generic;
 
-namespace GraphQLDotNet.Core.Source.DataModels
+namespace GraphQLDotNet.Core.Source.ApiModels
 {
-	public class Role : IConvertModel<Role, RoleApiModel>
+	public class RoleApiModel : IConvertModel<RoleApiModel, Role>
 	{
 		public string Code { get; set; }
 
@@ -14,11 +14,11 @@ namespace GraphQLDotNet.Core.Source.DataModels
 
 		public string Name { get; set; }
 
-		public ICollection<User> Users { get; set; }
+		public ICollection<UserApiModel> Users { get; set; }
 
-		public RoleApiModel Convert()
+		public Role Convert()
 		{
-			return new RoleApiModel
+			return new Role
 			{
 				Id = Id,
 				Name = Name,
