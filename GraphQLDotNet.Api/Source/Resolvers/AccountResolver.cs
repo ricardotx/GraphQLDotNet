@@ -2,7 +2,7 @@ using GraphQL;
 using GraphQL.DataLoader;
 
 using GraphQLDotNet.Core.Source;
-using GraphQLDotNet.Core.Source.DataModels;
+using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Resolvers;
 using GraphQLDotNet.Core.Source.Services;
 
@@ -23,7 +23,7 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 			_repo = repo;
 		}
 
-		public async Task<Account> AccountAsync(IResolveFieldContext context)
+		public async Task<AccountApiModel> AccountAsync(IResolveFieldContext context)
 		{
 			Guid accountId;
 
@@ -36,9 +36,9 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 			return await _accountService.GetAccountAsync(accountId);
 		}
 
-		public async Task<Account> AccountCreateAsync(IResolveFieldContext context)
+		public async Task<AccountApiModel> AccountCreateAsync(IResolveFieldContext context)
 		{
-			var data = context.GetArgument<Account>("data");
+			var data = context.GetArgument<AccountApiModel>("data");
 			return await _accountService.CreateAccountAsync(data);
 		}
 
@@ -48,21 +48,21 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 			return await _accountService.DeleteAccountAsync(accountId);
 		}
 
-		public async Task<IEnumerable<Account>> AccountsAsync()
+		public async Task<IEnumerable<AccountApiModel>> AccountsAsync()
 		{
 			return await _accountService.GetAccountsAsync();
 		}
 
-		public async Task<Account> AccountUpdateAsync(IResolveFieldContext context)
+		public async Task<AccountApiModel> AccountUpdateAsync(IResolveFieldContext context)
 		{
-			var account = context.GetArgument<Account>("data");
+			var account = context.GetArgument<AccountApiModel>("data");
 			var accountId = context.GetArgument<Guid>("accountId");
 			return await _accountService.UpdateAccountAsync(accountId, account);
 		}
 
-		public IDataLoaderResult<Owner> OwnerAsync(IResolveFieldContext<Account> context, IDataLoaderContextAccessor dataLoader)
+		public IDataLoaderResult<OwnerApiModel> OwnerAsync(IResolveFieldContext<AccountApiModel> context, IDataLoaderContextAccessor dataLoader)
 		{
-			var loader = dataLoader.Context.GetOrAddBatchLoader<Guid, Owner>(nameof(_repo.DataLoader.OwnersByIdAsync), _repo.DataLoader.OwnersByIdAsync);
+			var loader = dataLoader.Context.GetOrAddBatchLoader<Guid, OwnerApiModel>(nameof(_repo.DataLoader.OwnersByIdAsync), _repo.DataLoader.OwnersByIdAsync);
 			return loader.LoadAsync(context.Source.OwnerId);
 		}
 	}

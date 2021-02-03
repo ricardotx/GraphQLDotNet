@@ -1,4 +1,4 @@
-using GraphQLDotNet.Core.Source.DataModels;
+using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Repositories;
 using GraphQLDotNet.Data.Source.Context;
 
@@ -20,16 +20,18 @@ namespace GraphQLDotNet.Data.Source.Repositories
 			_context = context;
 		}
 
-		public async Task<ILookup<Guid, Account>> AccountsByOwnerIdsAsync(IEnumerable<Guid> ownerIds)
+		public async Task<ILookup<Guid, AccountApiModel>> AccountsByOwnerIdsAsync(IEnumerable<Guid> ownerIds)
 		{
 			var accounts = await _context.Accounts.Where(a => ownerIds.Contains(a.OwnerId)).ToListAsync();
-			return accounts.ToLookup(x => x.OwnerId);
+			var accountApiModels = accounts.Select(account => account.Convert()).ToList();
+			return accountApiModels.ToLookup(x => x.OwnerId);
 		}
 
-		public async Task<IDictionary<Guid, Owner>> OwnersByIdAsync(IEnumerable<Guid> ownerIds)
+		public async Task<IDictionary<Guid, OwnerApiModel>> OwnersByIdAsync(IEnumerable<Guid> ownerIds)
 		{
 			var owners = await _context.Owners.Where(a => ownerIds.Contains(a.Id)).ToListAsync();
-			return owners.ToDictionary(x => x.Id);
+			var ownerApiModels = owners.Select(owner => owner.Convert()).ToList();
+			return ownerApiModels.ToDictionary(x => x.Id);
 		}
 	}
 }

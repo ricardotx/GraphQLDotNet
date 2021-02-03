@@ -1,9 +1,10 @@
 using GraphQLDotNet.Core.Source;
-using GraphQLDotNet.Core.Source.DataModels;
+using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Services;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Services.Source
@@ -17,11 +18,12 @@ namespace GraphQLDotNet.Services.Source
 			_repo = repo;
 		}
 
-		public async Task<Owner> CreateOwnerAsync(Owner owner)
+		public async Task<OwnerApiModel> CreateOwnerAsync(OwnerApiModel owner)
 		{
-			await _repo.Owner.AddAsync(owner);
+			var dataModel = owner.Convert();
+			await _repo.Owner.AddAsync(dataModel);
 			await _repo.SaveChangesAsync();
-			return owner;
+			return dataModel.Convert();
 		}
 
 		public async Task<string> DeleteOwnerAsync(Guid ownerId)
@@ -32,23 +34,25 @@ namespace GraphQLDotNet.Services.Source
 			return $"The owner with the id: {ownerId} has been successfully deleted from db.";
 		}
 
-		public async Task<Owner> GetOwnerAsync(Guid ownerId)
+		public async Task<OwnerApiModel> GetOwnerAsync(Guid ownerId)
 		{
-			return await _repo.Owner.GetByIdAsync(ownerId);
+			var owner = await _repo.Owner.GetByIdAsync(ownerId);
+			return owner.Convert();
 		}
 
-		public async Task<IEnumerable<Owner>> GetOwnersAsync()
+		public async Task<IEnumerable<OwnerApiModel>> GetOwnersAsync()
 		{
-			return await _repo.Owner.GetAllAsync();
+			var owners = await _repo.Owner.GetAllAsync();
+			return owners.Select(owner => owner.Convert()).ToList();
 		}
 
-		public async Task<Owner> UpdateOwnerAsync(Guid ownerId, Owner owner)
+		public async Task<OwnerApiModel> UpdateOwnerAsync(Guid ownerId, OwnerApiModel owner)
 		{
 			var dbOwner = await _repo.Owner.GetByIdAsync(ownerId);
 			dbOwner.Name = owner.Name;
 			dbOwner.Address = owner.Address;
 			await _repo.SaveChangesAsync();
-			return dbOwner;
+			return dbOwner.Convert();
 		}
 	}
 }

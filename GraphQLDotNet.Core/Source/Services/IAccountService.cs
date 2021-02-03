@@ -1,4 +1,4 @@
-using GraphQLDotNet.Core.Source.DataModels;
+using GraphQLDotNet.Core.Source.ApiModels;
 
 using System;
 using System.Collections.Generic;
@@ -8,14 +8,14 @@ namespace GraphQLDotNet.Core.Source.Services
 {
 	public interface IAccountService
 	{
-		Task<Account> CreateAccountAsync(Account account);
+		Task<AccountApiModel> CreateAccountAsync(AccountApiModel account);
 
 		Task<string> DeleteAccountAsync(Guid accountId);
 
-		Task<Account> GetAccountAsync(Guid accountId);
+		Task<AccountApiModel> GetAccountAsync(Guid accountId);
 
-		Task<IEnumerable<Account>> GetAccountsAsync();
+		Task<IEnumerable<AccountApiModel>> GetAccountsAsync();
 
-		Task<Account> UpdateAccountAsync(Guid accountId, Account account);
+		Task<AccountApiModel> UpdateAccountAsync(Guid accountId, AccountApiModel account);
 	}
 }

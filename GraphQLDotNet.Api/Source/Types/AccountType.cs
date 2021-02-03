@@ -1,12 +1,12 @@
 using GraphQL.DataLoader;
 using GraphQL.Types;
 
-using GraphQLDotNet.Core.Source.DataModels;
+using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Resolvers;
 
 namespace GraphQLDotNet.Api.Source.Types
 {
-	public class AccountType : ObjectGraphType<Account>
+	public class AccountType : ObjectGraphType<AccountApiModel>
 	{
 		public AccountType(IAccountResolver resolver, IDataLoaderContextAccessor dataLoader)
 		{

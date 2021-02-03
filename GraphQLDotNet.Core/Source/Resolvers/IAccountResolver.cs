@@ -1,7 +1,7 @@
 using GraphQL;
 using GraphQL.DataLoader;
 
-using GraphQLDotNet.Core.Source.DataModels;
+using GraphQLDotNet.Core.Source.ApiModels;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,16 +10,16 @@ namespace GraphQLDotNet.Core.Source.Resolvers
 {
 	public interface IAccountResolver
 	{
-		Task<Account> AccountAsync(IResolveFieldContext context);
+		Task<AccountApiModel> AccountAsync(IResolveFieldContext context);
 
-		Task<Account> AccountCreateAsync(IResolveFieldContext context);
+		Task<AccountApiModel> AccountCreateAsync(IResolveFieldContext context);
 
 		Task<string> AccountDeleteAsync(IResolveFieldContext context);
 
-		Task<IEnumerable<Account>> AccountsAsync();
+		Task<IEnumerable<AccountApiModel>> AccountsAsync();
 
-		Task<Account> AccountUpdateAsync(IResolveFieldContext context);
+		Task<AccountApiModel> AccountUpdateAsync(IResolveFieldContext context);
 
-		IDataLoaderResult<Owner> OwnerAsync(IResolveFieldContext<Account> context, IDataLoaderContextAccessor dataLoader);
+		IDataLoaderResult<OwnerApiModel> OwnerAsync(IResolveFieldContext<AccountApiModel> context, IDataLoaderContextAccessor dataLoader);
 	}
 }

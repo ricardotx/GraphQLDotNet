@@ -2,7 +2,7 @@ using GraphQL;
 using GraphQL.DataLoader;
 
 using GraphQLDotNet.Core.Source;
-using GraphQLDotNet.Core.Source.DataModels;
+using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Resolvers;
 using GraphQLDotNet.Core.Source.Services;
 
@@ -23,15 +23,15 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 			_repo = repo;
 		}
 
-		public IDataLoaderResult<IEnumerable<Account>> AccountsAsync(IResolveFieldContext<Owner> context, IDataLoaderContextAccessor dataLoader)
+		public IDataLoaderResult<IEnumerable<AccountApiModel>> AccountsAsync(IResolveFieldContext<OwnerApiModel> context, IDataLoaderContextAccessor dataLoader)
 		{
-			var loader = dataLoader.Context.GetOrAddCollectionBatchLoader<Guid, Account>(nameof(_repo.DataLoader.AccountsByOwnerIdsAsync),
+			var loader = dataLoader.Context.GetOrAddCollectionBatchLoader<Guid, AccountApiModel>(nameof(_repo.DataLoader.AccountsByOwnerIdsAsync),
 				_repo.DataLoader.AccountsByOwnerIdsAsync);
 
 			return loader.LoadAsync(context.Source.Id);
 		}
 
-		public async Task<Owner> OwnerAsync(IResolveFieldContext context)
+		public async Task<OwnerApiModel> OwnerAsync(IResolveFieldContext context)
 		{
 			Guid ownerId;
 
@@ -44,9 +44,9 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 			return await _ownerService.GetOwnerAsync(ownerId);
 		}
 
-		public async Task<Owner> OwnerCreateAsync(IResolveFieldContext context)
+		public async Task<OwnerApiModel> OwnerCreateAsync(IResolveFieldContext context)
 		{
-			var data = context.GetArgument<Owner>("data");
+			var data = context.GetArgument<OwnerApiModel>("data");
 			return await _ownerService.CreateOwnerAsync(data);
 		}
 
@@ -56,23 +56,16 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 			return await _ownerService.DeleteOwnerAsync(ownerId);
 		}
 
-		public async Task<IEnumerable<Owner>> OwnersAsync()
+		public async Task<IEnumerable<OwnerApiModel>> OwnersAsync()
 		{
 			return await _ownerService.GetOwnersAsync();
 		}
 
-		public async Task<Owner> OwnerUpdateAsync(IResolveFieldContext context)
+		public async Task<OwnerApiModel> OwnerUpdateAsync(IResolveFieldContext context)
 		{
-			var data = context.GetArgument<Owner>("data");
+			var data = context.GetArgument<OwnerApiModel>("data");
 			var ownerId = context.GetArgument<Guid>("ownerId");
-
-			var owner = new Owner
-			{
-				Name = data.Name,
-				Address = data.Address
-			};
-
-			return await _ownerService.UpdateOwnerAsync(ownerId, owner);
+			return await _ownerService.UpdateOwnerAsync(ownerId, data);
 		}
 	}
 }

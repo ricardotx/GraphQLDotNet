@@ -1,9 +1,10 @@
 using GraphQLDotNet.Core.Source;
-using GraphQLDotNet.Core.Source.DataModels;
+using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Services;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Services.Source
@@ -17,11 +18,12 @@ namespace GraphQLDotNet.Services.Source
 			_repo = repo;
 		}
 
-		public async Task<Account> CreateAccountAsync(Account account)
+		public async Task<AccountApiModel> CreateAccountAsync(AccountApiModel account)
 		{
-			await _repo.Account.AddAsync(account);
+			var dataModel = account.Convert();
+			await _repo.Account.AddAsync(dataModel);
 			await _repo.SaveChangesAsync();
-			return account;
+			return dataModel.Convert();
 		}
 
 		public async Task<string> DeleteAccountAsync(Guid accountId)
@@ -32,24 +34,26 @@ namespace GraphQLDotNet.Services.Source
 			return $"The account with the id: {accountId} has been successfully deleted from db.";
 		}
 
-		public async Task<Account> GetAccountAsync(Guid accountId)
+		public async Task<AccountApiModel> GetAccountAsync(Guid accountId)
 		{
-			return await _repo.Account.GetByIdAsync(accountId);
+			var account = await _repo.Account.GetByIdAsync(accountId);
+			return account.Convert();
 		}
 
-		public async Task<IEnumerable<Account>> GetAccountsAsync()
+		public async Task<IEnumerable<AccountApiModel>> GetAccountsAsync()
 		{
-			return await _repo.Account.GetAllAsync();
+			var accounts = await _repo.Account.GetAllAsync();
+			return accounts.Select(account => account.Convert()).ToList();
 		}
 
-		public async Task<Account> UpdateAccountAsync(Guid accountId, Account account)
+		public async Task<AccountApiModel> UpdateAccountAsync(Guid accountId, AccountApiModel account)
 		{
 			var dbAccount = await _repo.Account.GetByIdAsync(accountId);
 			dbAccount.Description = account.Description;
 			dbAccount.Type = account.Type;
 			dbAccount.OwnerId = account.OwnerId;
 			await _repo.SaveChangesAsync();
-			return dbAccount;
+			return dbAccount.Convert();
 		}
 	}
 }
