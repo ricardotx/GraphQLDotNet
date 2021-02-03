@@ -1,3 +1,4 @@
+using GraphQLDotNet.Core.Source.Enums;
 using GraphQLDotNet.Core.Source.Models;
 
 using Microsoft.EntityFrameworkCore;
@@ -23,21 +24,21 @@ namespace GraphQLDotNet.Data.Source.Configurations
 				new Account
 				{
 					Id = Guid.NewGuid(),
-					Type = TypeOfAccount.Cash,
+					Type = AccountTypeEnum.Cash,
 					Description = "Cash account for our users",
 					OwnerId = _ids[0]
 				},
 				new Account
 				{
 					Id = Guid.NewGuid(),
-					Type = TypeOfAccount.Savings,
+					Type = AccountTypeEnum.Savings,
 					Description = "Savings account for our users",
 					OwnerId = _ids[1]
 				},
 				new Account
 				{
 					Id = Guid.NewGuid(),
-					Type = TypeOfAccount.Income,
+					Type = AccountTypeEnum.Income,
 					Description = "Income account for our users",
 					OwnerId = _ids[1]
 				}

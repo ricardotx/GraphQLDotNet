@@ -1,4 +1,5 @@
-using GraphQLDotNet.Core.Source.Auth;
+using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Enums;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +16,11 @@ namespace GraphQLDotNet.Api.Source.Controllers
 		}
 
 		[HttpPost("grant")]
-		public IActionResult Grant([FromBody] AuthRequestBody body)
+		public IActionResult Grant([FromBody] AuthRequestBodyApiModel body)
 		{
 			if (body.GrantType == GrantTypeEnum.password.ToString())
 			{
-				return Ok(new AuthResponse
+				return Ok(new AuthResponseApiModel
 				{
 					AccessToken = Guid.NewGuid().ToString(),
 					AccessTokenExpiracy = "",
@@ -30,7 +31,7 @@ namespace GraphQLDotNet.Api.Source.Controllers
 
 			if (body.GrantType == GrantTypeEnum.refresh_token.ToString())
 			{
-				return Ok(new AuthResponse
+				return Ok(new AuthResponseApiModel
 				{
 					AccessToken = Guid.NewGuid().ToString(),
 					AccessTokenExpiracy = "",

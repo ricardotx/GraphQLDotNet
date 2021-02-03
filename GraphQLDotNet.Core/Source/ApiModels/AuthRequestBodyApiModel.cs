@@ -1,14 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace GraphQLDotNet.Core.Source.Auth
+namespace GraphQLDotNet.Core.Source.ApiModels
 {
-	public enum GrantTypeEnum
-	{
-		password,
-		refresh_token
-	}
-
-	public class AuthRequestBody
+	public class AuthRequestBodyApiModel
 	{
 		[Required]
 		public string ClientId { get; set; }

@@ -3,12 +3,6 @@ using System.Collections.Generic;
 
 namespace GraphQLDotNet.Core.Source.Models
 {
-	public enum RoleCodeEnum
-	{
-		Admin,
-		User,
-	}
-
 	public class Role
 	{
 		public string Code { get; set; }

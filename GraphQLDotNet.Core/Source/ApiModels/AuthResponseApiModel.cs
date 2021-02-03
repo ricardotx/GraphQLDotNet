@@ -1,6 +1,6 @@
-namespace GraphQLDotNet.Core.Source.Auth
+namespace GraphQLDotNet.Core.Source.ApiModels
 {
-	public class AuthResponse
+	public class AuthResponseApiModel
 	{
 		public string AccessToken { get; set; }
 		public string AccessTokenExpiracy { get; set; }

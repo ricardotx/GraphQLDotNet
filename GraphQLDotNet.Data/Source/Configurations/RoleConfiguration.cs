@@ -1,3 +1,4 @@
+using GraphQLDotNet.Core.Source.Enums;
 using GraphQLDotNet.Core.Source.Models;
 
 using Microsoft.EntityFrameworkCore;

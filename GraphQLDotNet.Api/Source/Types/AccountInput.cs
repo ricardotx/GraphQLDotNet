@@ -7,7 +7,7 @@ namespace GraphQLDotNet.Api.Source.Types
 		public AccountInput()
 		{
 			Name = "AccountInput";
-			Field<NonNullGraphType<AccountTypeEnum>>("type");
+			Field<NonNullGraphType<AccountTypeEnumType>>("type");
 			Field<NonNullGraphType<StringGraphType>>("description");
 			Field<StringGraphType>("ownerId");
 		}
