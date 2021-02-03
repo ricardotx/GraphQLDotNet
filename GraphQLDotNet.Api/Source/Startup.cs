@@ -1,18 +1,10 @@
-using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
 
+using GraphQLDotNet.Api.Source.Configurations;
 using GraphQLDotNet.Api.Source.GraphQL;
-using GraphQLDotNet.Api.Source.Resolvers;
-using GraphQLDotNet.Core.Source;
-using GraphQLDotNet.Core.Source.Resolvers;
-using GraphQLDotNet.Core.Source.Services;
-using GraphQLDotNet.Data.Source;
-using GraphQLDotNet.Data.Source.Context;
-using GraphQLDotNet.Services.Source;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -59,28 +51,12 @@ namespace GraphQLDotNet.Api.Source
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			// Database connection config
-			string connectionStr = Configuration.GetConnectionString("mysqlConString");
-			services.AddDbContext<ApplicationContext>(opt => opt.UseMySql(connectionStr, ServerVersion.AutoDetect(connectionStr)));
-
-			// Repository
-			services.AddScoped<IRepository, Repository>();
-
-			// Services
-			services.AddScoped<IOwnerService, OwnerService>();
-			services.AddScoped<IAccountService, AccountService>();
-			services.AddScoped<IDataLoaderService, DataLoaderService>();
-
-			// GraphQL Resolvers
-			services.AddScoped<IOwnerResolver, OwnerResolver>();
-			services.AddScoped<IAccountResolver, AccountResolver>();
-
-			// GraphQL config
-			services.AddScoped<AppSchema>();
-			services.AddGraphQL()
-				.AddSystemTextJson()
-				.AddGraphTypes(typeof(AppSchema), ServiceLifetime.Scoped)
-				.AddDataLoader();
+			// Configure our services
+			services.ConfigureDbContext(Configuration);
+			services.ConfigureRepositories();
+			services.ConfigureServices();
+			services.ConfigureGraphQLResolvers();
+			services.ConfigureGraphQL();
 
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
