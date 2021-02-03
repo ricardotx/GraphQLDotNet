@@ -6,7 +6,7 @@ using GraphQLDotNet.Core.Source.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Core.Source.Contracts.Resolvers
+namespace GraphQLDotNet.Core.Source.Resolvers
 {
 	public interface IAccountResolver
 	{

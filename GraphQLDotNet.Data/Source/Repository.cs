@@ -1,5 +1,5 @@
-using GraphQLDotNet.Core.Source.Contracts;
-using GraphQLDotNet.Core.Source.Contracts.Repositories;
+using GraphQLDotNet.Core.Source;
+using GraphQLDotNet.Core.Source.Repositories;
 using GraphQLDotNet.Data.Source.Context;
 using GraphQLDotNet.Data.Source.Repositories;
 

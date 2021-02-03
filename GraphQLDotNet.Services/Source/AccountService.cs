@@ -1,6 +1,6 @@
-using GraphQLDotNet.Core.Source.Contracts;
-using GraphQLDotNet.Core.Source.Contracts.Services;
+using GraphQLDotNet.Core.Source;
 using GraphQLDotNet.Core.Source.Models;
+using GraphQLDotNet.Core.Source.Services;
 
 using System;
 using System.Collections.Generic;

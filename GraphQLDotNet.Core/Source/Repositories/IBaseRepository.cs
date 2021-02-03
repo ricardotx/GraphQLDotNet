@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Core.Source.Contracts.Repositories
+namespace GraphQLDotNet.Core.Source.Repositories
 {
 	public interface IBaseRepository<TEntity> where TEntity : class
 	{

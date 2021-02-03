@@ -3,9 +3,9 @@ using GraphQL.Server.Ui.Playground;
 
 using GraphQLDotNet.Api.Source.GraphQL;
 using GraphQLDotNet.Api.Source.Resolvers;
-using GraphQLDotNet.Core.Source.Contracts;
-using GraphQLDotNet.Core.Source.Contracts.Resolvers;
-using GraphQLDotNet.Core.Source.Contracts.Services;
+using GraphQLDotNet.Core.Source;
+using GraphQLDotNet.Core.Source.Resolvers;
+using GraphQLDotNet.Core.Source.Services;
 using GraphQLDotNet.Data.Source;
 using GraphQLDotNet.Data.Source.Context;
 using GraphQLDotNet.Services.Source;

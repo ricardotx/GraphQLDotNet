@@ -1,9 +1,9 @@
-using GraphQLDotNet.Core.Source.Contracts.Repositories;
+using GraphQLDotNet.Core.Source.Repositories;
 
 using System;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Core.Source.Contracts
+namespace GraphQLDotNet.Core.Source
 {
 	public interface IRepository : IDisposable
 	{

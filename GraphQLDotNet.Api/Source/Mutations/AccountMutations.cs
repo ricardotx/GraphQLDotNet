@@ -1,7 +1,7 @@
 using GraphQL.Types;
 
 using GraphQLDotNet.Api.Source.Types;
-using GraphQLDotNet.Core.Source.Contracts.Resolvers;
+using GraphQLDotNet.Core.Source.Resolvers;
 
 namespace GraphQLDotNet.Api.Source.Mutations
 {

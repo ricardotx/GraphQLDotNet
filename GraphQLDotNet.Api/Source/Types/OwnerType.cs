@@ -1,8 +1,8 @@
 using GraphQL.DataLoader;
 using GraphQL.Types;
 
-using GraphQLDotNet.Core.Source.Contracts.Resolvers;
 using GraphQLDotNet.Core.Source.Models;
+using GraphQLDotNet.Core.Source.Resolvers;
 
 namespace GraphQLDotNet.Api.Source.Types
 {

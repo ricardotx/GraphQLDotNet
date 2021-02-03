@@ -1,4 +1,4 @@
-using GraphQLDotNet.Core.Source.Contracts.Repositories;
+using GraphQLDotNet.Core.Source.Repositories;
 using GraphQLDotNet.Data.Source.Context;
 
 using Microsoft.EntityFrameworkCore;

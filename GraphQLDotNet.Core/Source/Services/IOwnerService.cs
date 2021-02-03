@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Core.Source.Contracts.Services
+namespace GraphQLDotNet.Core.Source.Services
 {
 	public interface IOwnerService
 	{

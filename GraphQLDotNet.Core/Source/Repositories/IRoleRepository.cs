@@ -1,8 +1,8 @@
 using GraphQLDotNet.Core.Source.Models;
 
-namespace GraphQLDotNet.Core.Source.Contracts.Repositories
+namespace GraphQLDotNet.Core.Source.Repositories
 {
-	public interface IOwnerRepository : IBaseRepository<Owner>
+	public interface IRoleRepository : IBaseRepository<Role>
 	{
 		// We only need a method that already exists in the BaseRepository
 	}

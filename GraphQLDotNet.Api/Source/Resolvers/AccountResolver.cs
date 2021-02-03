@@ -1,10 +1,10 @@
 using GraphQL;
 using GraphQL.DataLoader;
 
-using GraphQLDotNet.Core.Source.Contracts;
-using GraphQLDotNet.Core.Source.Contracts.Resolvers;
-using GraphQLDotNet.Core.Source.Contracts.Services;
+using GraphQLDotNet.Core.Source;
 using GraphQLDotNet.Core.Source.Models;
+using GraphQLDotNet.Core.Source.Resolvers;
+using GraphQLDotNet.Core.Source.Services;
 
 using System;
 using System.Collections.Generic;
