@@ -1,10 +1,10 @@
 using GraphQLDotNet.Core.Source;
 using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Extensions;
 using GraphQLDotNet.Core.Source.Services;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Services.Source
@@ -43,7 +43,7 @@ namespace GraphQLDotNet.Services.Source
 		public async Task<IEnumerable<AccountApiModel>> GetAccountsAsync()
 		{
 			var accounts = await _repo.Account.GetAllAsync();
-			return accounts.Select(account => account.Convert()).ToList();
+			return accounts.ConvertAll();
 		}
 
 		public async Task<AccountApiModel> UpdateAccountAsync(Guid accountId, AccountApiModel account)

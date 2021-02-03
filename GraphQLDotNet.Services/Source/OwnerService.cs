@@ -1,10 +1,10 @@
 using GraphQLDotNet.Core.Source;
 using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Extensions;
 using GraphQLDotNet.Core.Source.Services;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GraphQLDotNet.Services.Source
@@ -43,7 +43,7 @@ namespace GraphQLDotNet.Services.Source
 		public async Task<IEnumerable<OwnerApiModel>> GetOwnersAsync()
 		{
 			var owners = await _repo.Owner.GetAllAsync();
-			return owners.Select(owner => owner.Convert()).ToList();
+			return owners.ConvertAll();
 		}
 
 		public async Task<OwnerApiModel> UpdateOwnerAsync(Guid ownerId, OwnerApiModel owner)
