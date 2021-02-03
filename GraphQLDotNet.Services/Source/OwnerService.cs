@@ -1,5 +1,5 @@
 using GraphQLDotNet.Core.Source;
-using GraphQLDotNet.Core.Source.Models;
+using GraphQLDotNet.Core.Source.DataModels;
 using GraphQLDotNet.Core.Source.Services;
 
 using System;

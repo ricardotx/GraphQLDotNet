@@ -1,4 +1,4 @@
-using GraphQLDotNet.Core.Source.Models;
+using GraphQLDotNet.Core.Source.DataModels;
 using GraphQLDotNet.Core.Source.Repositories;
 using GraphQLDotNet.Data.Source.Context;
 

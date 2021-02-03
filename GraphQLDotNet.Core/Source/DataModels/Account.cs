@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GraphQLDotNet.Core.Source.Models
+namespace GraphQLDotNet.Core.Source.DataModels
 {
 	public class Account
 	{

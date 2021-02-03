@@ -1,14 +1,9 @@
+using GraphQLDotNet.Core.Source.Enums;
+
 using System;
 
-namespace GraphQLDotNet.Core.Source.Models
+namespace GraphQLDotNet.Core.Source.DataModels
 {
-	public enum UserStatusEnum
-	{
-		NotActive,
-		Active,
-		Blocked,
-	}
-
 	public class User
 	{
 		public string Email { get; set; }

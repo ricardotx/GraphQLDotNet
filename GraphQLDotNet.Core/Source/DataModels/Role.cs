@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GraphQLDotNet.Core.Source.Models
+namespace GraphQLDotNet.Core.Source.DataModels
 {
 	public class Role
 	{
