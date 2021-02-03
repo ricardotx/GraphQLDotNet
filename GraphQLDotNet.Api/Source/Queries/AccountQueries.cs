@@ -7,7 +7,7 @@ namespace GraphQLDotNet.Api.Source.Queries
 {
 	public partial class RootQuery
 	{
-		protected void AccountQueriesFactory(IAccountResolver resolvers)
+		protected void SetAccountQueries(IAccountResolver resolvers)
 		{
 			Field<ListGraphType<AccountType>>(
 			   "accounts",

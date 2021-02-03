@@ -1,5 +1,5 @@
-using GraphQLDotNet.Core.Source;
 using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.ApiRepository;
 using GraphQLDotNet.Core.Source.Extensions;
 using GraphQLDotNet.Core.Source.Services;
 
@@ -11,9 +11,9 @@ namespace GraphQLDotNet.Services.Source
 {
 	public class AccountService : IAccountService
 	{
-		private readonly IRepository _repo;
+		private readonly IApiRepository _repo;
 
-		public AccountService(IRepository repo)
+		public AccountService(IApiRepository repo)
 		{
 			_repo = repo;
 		}

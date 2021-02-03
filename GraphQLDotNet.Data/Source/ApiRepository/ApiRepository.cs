@@ -1,12 +1,12 @@
-using GraphQLDotNet.Core.Source;
+using GraphQLDotNet.Core.Source.ApiRepository;
 using GraphQLDotNet.Core.Source.Repositories;
 using GraphQLDotNet.Data.Source.Context;
 
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Data.Source
+namespace GraphQLDotNet.Data.Source.ApiRepository
 {
-	public class Repository : IRepository
+	public class ApiRepository : IApiRepository
 	{
 		private readonly ApplicationContext _context;
 		private IAccountRepository _accountRepository;
@@ -14,7 +14,7 @@ namespace GraphQLDotNet.Data.Source
 		private IRoleRepository _roleRepository;
 		private IUserRepository _userRepository;
 
-		public Repository(
+		public ApiRepository(
 			ApplicationContext context,
 			IAccountRepository accountRepository,
 			IOwnerRepository ownerRepository,

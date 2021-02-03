@@ -1,12 +1,11 @@
 using GraphQL.Server;
 
-using GraphQLDotNet.Api.Source.GraphQL;
 using GraphQLDotNet.Api.Source.Resolvers;
-using GraphQLDotNet.Core.Source;
+using GraphQLDotNet.Core.Source.ApiRepository;
 using GraphQLDotNet.Core.Source.Repositories;
 using GraphQLDotNet.Core.Source.Resolvers;
 using GraphQLDotNet.Core.Source.Services;
-using GraphQLDotNet.Data.Source;
+using GraphQLDotNet.Data.Source.ApiRepository;
 using GraphQLDotNet.Data.Source.Context;
 using GraphQLDotNet.Data.Source.Repositories;
 using GraphQLDotNet.Services.Source;
@@ -31,10 +30,10 @@ namespace GraphQLDotNet.Api.Source.Configurations
 		public static void ConfigureGraphQL(this IServiceCollection services)
 		{
 			services
-				.AddScoped<AppSchema>()
+				.AddScoped<GraphQLSchema>()
 				.AddGraphQL()
 				.AddSystemTextJson()
-				.AddGraphTypes(typeof(AppSchema), ServiceLifetime.Scoped).AddDataLoader();
+				.AddGraphTypes(typeof(GraphQLSchema), ServiceLifetime.Scoped).AddDataLoader();
 		}
 
 		// Grapqhl Resolvers
@@ -49,7 +48,7 @@ namespace GraphQLDotNet.Api.Source.Configurations
 		public static void ConfigureRepositories(this IServiceCollection services)
 		{
 			services
-				.AddScoped<IRepository, Repository>()
+				.AddScoped<IApiRepository, ApiRepository>()
 				.AddScoped<IAccountRepository, AccountRepository>()
 				.AddScoped<IOwnerRepository, OwnerRepository>()
 				.AddScoped<IRoleRepository, RoleRepository>()

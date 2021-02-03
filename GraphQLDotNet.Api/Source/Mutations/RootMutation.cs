@@ -12,8 +12,8 @@ namespace GraphQLDotNet.Api.Source.Mutations
 		 )
 		{
 			Name = "Mutation";
-			OwnerMutationsFactory(ownerResolvers);
-			AccountMutationsFactory(accountResolvers);
+			SetOwnerMutations(ownerResolvers);
+			SetAccountMutations(accountResolvers);
 		}
 	}
 }

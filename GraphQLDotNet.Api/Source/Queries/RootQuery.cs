@@ -12,8 +12,8 @@ namespace GraphQLDotNet.Api.Source.Queries
 		)
 		{
 			Name = "Query";
-			OwnerQueriesFactory(ownerResolver);
-			AccountQueriesFactory(accountResolver);
+			SetOwnerQueries(ownerResolver);
+			SetAccountQueries(accountResolver);
 		}
 	}
 }

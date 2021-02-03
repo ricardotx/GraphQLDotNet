@@ -7,7 +7,7 @@ namespace GraphQLDotNet.Api.Source.Mutations
 {
 	public partial class RootMutation
 	{
-		protected void AccountMutationsFactory(IAccountResolver resolvers)
+		protected void SetAccountMutations(IAccountResolver resolvers)
 		{
 			Field<AccountType>(
 				"accountCreate",

@@ -6,11 +6,11 @@ using GraphQLDotNet.Api.Source.Queries;
 
 using System;
 
-namespace GraphQLDotNet.Api.Source.GraphQL
+namespace GraphQLDotNet.Api.Source
 {
-	public class AppSchema : Schema
+	public class GraphQLSchema : Schema
 	{
-		public AppSchema(IServiceProvider provider) : base(provider)
+		public GraphQLSchema(IServiceProvider provider) : base(provider)
 		{
 			Query = provider.GetRequiredService<RootQuery>();
 			Mutation = provider.GetRequiredService<RootMutation>();

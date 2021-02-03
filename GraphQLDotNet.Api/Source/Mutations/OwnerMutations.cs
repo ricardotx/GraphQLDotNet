@@ -7,7 +7,7 @@ namespace GraphQLDotNet.Api.Source.Mutations
 {
 	public partial class RootMutation
 	{
-		protected void OwnerMutationsFactory(IOwnerResolver resolvers)
+		protected void SetOwnerMutations(IOwnerResolver resolvers)
 		{
 			Field<OwnerType>(
 				"ownerCreate",

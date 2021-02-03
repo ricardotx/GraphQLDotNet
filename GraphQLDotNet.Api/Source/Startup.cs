@@ -1,7 +1,6 @@
 using GraphQL.Server.Ui.Playground;
 
 using GraphQLDotNet.Api.Source.Configurations;
-using GraphQLDotNet.Api.Source.GraphQL;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,7 +39,7 @@ namespace GraphQLDotNet.Api.Source
 			app.UseAuthorization();
 
 			// GraphQL enpoint
-			app.UseGraphQL<AppSchema>();
+			app.UseGraphQL<GraphQLSchema>();
 
 			app.UseEndpoints(endpoints =>
 			{

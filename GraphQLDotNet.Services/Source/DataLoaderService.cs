@@ -1,5 +1,5 @@
-using GraphQLDotNet.Core.Source;
 using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.ApiRepository;
 using GraphQLDotNet.Core.Source.Extensions;
 using GraphQLDotNet.Core.Source.Services;
 
@@ -12,9 +12,9 @@ namespace GraphQLDotNet.Services.Source
 {
 	public class DataLoaderService : IDataLoaderService
 	{
-		private readonly IRepository _repo;
+		private readonly IApiRepository _repo;
 
-		public DataLoaderService(IRepository repo)
+		public DataLoaderService(IApiRepository repo)
 		{
 			_repo = repo;
 		}

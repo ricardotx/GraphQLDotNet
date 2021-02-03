@@ -1,8 +1,8 @@
 using GraphQL;
 using GraphQL.DataLoader;
 
-using GraphQLDotNet.Core.Source;
 using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.ApiRepository;
 using GraphQLDotNet.Core.Source.Resolvers;
 using GraphQLDotNet.Core.Source.Services;
 
@@ -16,12 +16,12 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 	{
 		private readonly IAccountService _accountService;
 		private readonly IDataLoaderService _dataLoaderService;
-		private readonly IRepository _repo;
+		private readonly IApiRepository _repo;
 
 		public AccountResolver(
 			IAccountService accountService,
 			IDataLoaderService dataLoaderService,
-			IRepository repo
+			IApiRepository repo
 		)
 		{
 			_accountService = accountService;

@@ -7,7 +7,7 @@ namespace GraphQLDotNet.Api.Source.Queries
 {
 	public partial class RootQuery
 	{
-		protected void OwnerQueriesFactory(IOwnerResolver resolver)
+		protected void SetOwnerQueries(IOwnerResolver resolver)
 		{
 			Field<ListGraphType<OwnerType>>(
 				"owners",
