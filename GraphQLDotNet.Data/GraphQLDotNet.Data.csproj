@@ -18,4 +18,8 @@
     <ProjectReference Include="..\GraphQLDotNet.Core\GraphQLDotNet.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Source\ApiRepository\" />
+  </ItemGroup>
+
 </Project>

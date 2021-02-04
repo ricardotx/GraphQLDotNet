@@ -9,17 +9,17 @@ namespace GraphQLDotNet.Data.Source.Repositories
 {
 	public class RoleRepository : BaseRepository<Role>, IRoleRepository
 	{
-		private readonly ApplicationContext _db;
+		private readonly StorageContext db;
 
-		public RoleRepository(ApplicationContext context) : base(context)
+		public RoleRepository(StorageContext context) : base(context)
 		{
-			_db = context;
+			this.db = context;
 		}
 
 		public override async Task AddAsync(Role role)
 		{
 			role.Id = Guid.NewGuid();
-			await _db.Roles.AddAsync(role);
+			await this.db.Roles.AddAsync(role);
 		}
 	}
 }

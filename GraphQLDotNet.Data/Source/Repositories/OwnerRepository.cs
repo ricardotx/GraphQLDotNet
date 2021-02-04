@@ -9,17 +9,17 @@ namespace GraphQLDotNet.Data.Source.Repositories
 {
 	public class OwnerRepository : BaseRepository<Owner>, IOwnerRepository
 	{
-		private readonly ApplicationContext _db;
+		private readonly StorageContext db;
 
-		public OwnerRepository(ApplicationContext context) : base(context)
+		public OwnerRepository(StorageContext context) : base(context)
 		{
-			_db = context;
+			this.db = context;
 		}
 
 		public override async Task AddAsync(Owner owner)
 		{
 			owner.Id = Guid.NewGuid();
-			await _db.Owners.AddAsync(owner);
+			await this.db.Owners.AddAsync(owner);
 		}
 	}
 }

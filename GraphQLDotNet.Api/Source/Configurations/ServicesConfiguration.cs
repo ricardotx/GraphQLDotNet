@@ -1,11 +1,10 @@
 using GraphQL.Server;
 
 using GraphQLDotNet.Api.Source.Resolvers;
-using GraphQLDotNet.Core.Source.ApiRepository;
 using GraphQLDotNet.Core.Source.Repositories;
 using GraphQLDotNet.Core.Source.Resolvers;
 using GraphQLDotNet.Core.Source.Services;
-using GraphQLDotNet.Data.Source.ApiRepository;
+using GraphQLDotNet.Core.Source.Storage;
 using GraphQLDotNet.Data.Source.Context;
 using GraphQLDotNet.Data.Source.Repositories;
 using GraphQLDotNet.Services.Source;
@@ -23,7 +22,7 @@ namespace GraphQLDotNet.Api.Source.Configurations
 		{
 			string connectionStr = configuration.GetConnectionString("mysqlConString");
 			services
-				.AddDbContext<ApplicationContext>(opt => opt.UseMySql(connectionStr, ServerVersion.AutoDetect(connectionStr)));
+				.AddDbContext<StorageContext>(opt => opt.UseMySql(connectionStr, ServerVersion.AutoDetect(connectionStr)));
 		}
 
 		// Graphql
@@ -48,7 +47,7 @@ namespace GraphQLDotNet.Api.Source.Configurations
 		public static void ConfigureRepositories(this IServiceCollection services)
 		{
 			services
-				.AddScoped<IApiRepository, ApiRepository>()
+				.AddScoped<IStorage, Storage>()
 				.AddScoped<IAccountRepository, AccountRepository>()
 				.AddScoped<IOwnerRepository, OwnerRepository>()
 				.AddScoped<IRoleRepository, RoleRepository>()

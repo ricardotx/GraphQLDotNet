@@ -50,7 +50,7 @@ namespace GraphQLDotNet.Data.Source.Migrations
                         column: x => x.OwnerId,
                         principalTable: "Owners",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,8 +80,8 @@ namespace GraphQLDotNet.Data.Source.Migrations
                 columns: new[] { "Id", "Address", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("4fc8c99e-d975-449c-9d2a-1ffe86c08f6d"), "John Doe's address", "John Doe" },
-                    { new Guid("99e225ed-d0df-416b-b67c-e0cf416baf52"), "Jane Doe's address", "Jane Doe" }
+                    { new Guid("0cdded52-9e3a-4249-be4d-3a5dca8e99f8"), "John Doe's address", "John Doe" },
+                    { new Guid("778ff453-8593-424a-ba9b-a7e32fba0478"), "Jane Doe's address", "Jane Doe" }
                 });
 
             migrationBuilder.InsertData(
@@ -89,8 +89,8 @@ namespace GraphQLDotNet.Data.Source.Migrations
                 columns: new[] { "Id", "Code", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("31e0c425-aaa9-4315-b138-fd957e04bf0a"), "admin", "Admin" },
-                    { new Guid("d7a77eab-6b8c-44b9-a114-f36d81d80990"), "user", "User" }
+                    { new Guid("5cd0d301-c3f2-40ee-9736-b37826e4f027"), "admin", "Admin" },
+                    { new Guid("24417ea1-2528-431b-89fc-6fd2611238fa"), "user", "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -98,15 +98,15 @@ namespace GraphQLDotNet.Data.Source.Migrations
                 columns: new[] { "Id", "Description", "OwnerId", "Type" },
                 values: new object[,]
                 {
-                    { new Guid("768e238b-3fb6-4b1d-a8ed-ec9111a41bea"), "Cash account for our users", new Guid("4fc8c99e-d975-449c-9d2a-1ffe86c08f6d"), 0 },
-                    { new Guid("67ad16a9-d217-4dc1-8f4a-069617f7d1ab"), "Savings account for our users", new Guid("99e225ed-d0df-416b-b67c-e0cf416baf52"), 1 },
-                    { new Guid("fccc5a20-dc27-43ca-ad17-f63f87dda843"), "Income account for our users", new Guid("99e225ed-d0df-416b-b67c-e0cf416baf52"), 3 }
+                    { new Guid("e913680c-1427-476e-855a-8c1f04aff95a"), "Cash account for our users", new Guid("0cdded52-9e3a-4249-be4d-3a5dca8e99f8"), 0 },
+                    { new Guid("c11ec666-03e6-4e95-ab1e-664ff1e09615"), "Savings account for our users", new Guid("778ff453-8593-424a-ba9b-a7e32fba0478"), 1 },
+                    { new Guid("6454474e-f180-470e-9447-6a325903a92c"), "Income account for our users", new Guid("778ff453-8593-424a-ba9b-a7e32fba0478"), 3 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "Name", "Password", "RoleId", "Status" },
-                values: new object[] { new Guid("d368833f-6584-47a2-ae55-97962a527954"), "admin@mail.com", "Admin", "123", new Guid("31e0c425-aaa9-4315-b138-fd957e04bf0a"), 1 });
+                values: new object[] { new Guid("224a0932-2140-4cb7-a5f5-47342b5d6579"), "admin@mail.com", "Admin", "123", new Guid("5cd0d301-c3f2-40ee-9736-b37826e4f027"), 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_OwnerId",

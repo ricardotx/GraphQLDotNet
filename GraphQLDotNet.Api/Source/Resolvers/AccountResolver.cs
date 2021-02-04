@@ -2,9 +2,9 @@ using GraphQL;
 using GraphQL.DataLoader;
 
 using GraphQLDotNet.Core.Source.ApiModels;
-using GraphQLDotNet.Core.Source.ApiRepository;
 using GraphQLDotNet.Core.Source.Resolvers;
 using GraphQLDotNet.Core.Source.Services;
+using GraphQLDotNet.Core.Source.Storage;
 
 using System;
 using System.Collections.Generic;
@@ -14,19 +14,19 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 {
 	public class AccountResolver : IAccountResolver
 	{
-		private readonly IAccountService _accountService;
-		private readonly IDataLoaderService _dataLoaderService;
-		private readonly IApiRepository _repo;
+		private readonly IAccountService accountService;
+		private readonly IDataLoaderService dataLoaderService;
+		private readonly IStorage storage;
 
 		public AccountResolver(
 			IAccountService accountService,
 			IDataLoaderService dataLoaderService,
-			IApiRepository repo
+			IStorage storage
 		)
 		{
-			_accountService = accountService;
-			_dataLoaderService = dataLoaderService;
-			_repo = repo;
+			this.accountService = accountService;
+			this.dataLoaderService = dataLoaderService;
+			this.storage = storage;
 		}
 
 		public async Task<AccountApiModel> AccountAsync(IResolveFieldContext context)
@@ -39,31 +39,31 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 				return null;
 			}
 
-			return await _accountService.GetAccountAsync(accountId);
+			return await this.accountService.GetAccountAsync(accountId);
 		}
 
 		public async Task<AccountApiModel> AccountCreateAsync(IResolveFieldContext context)
 		{
 			var data = context.GetArgument<AccountApiModel>("data");
-			return await _accountService.CreateAccountAsync(data);
+			return await this.accountService.CreateAccountAsync(data);
 		}
 
 		public async Task<string> AccountDeleteAsync(IResolveFieldContext context)
 		{
 			var accountId = context.GetArgument<Guid>("accountId");
-			return await _accountService.DeleteAccountAsync(accountId);
+			return await this.accountService.DeleteAccountAsync(accountId);
 		}
 
 		public async Task<IEnumerable<AccountApiModel>> AccountsAsync()
 		{
-			return await _accountService.GetAccountsAsync();
+			return await this.accountService.GetAccountsAsync();
 		}
 
 		public async Task<AccountApiModel> AccountUpdateAsync(IResolveFieldContext context)
 		{
 			var account = context.GetArgument<AccountApiModel>("data");
 			var accountId = context.GetArgument<Guid>("accountId");
-			return await _accountService.UpdateAccountAsync(accountId, account);
+			return await this.accountService.UpdateAccountAsync(accountId, account);
 		}
 
 		public IDataLoaderResult<OwnerApiModel> OwnerAsync(
@@ -72,8 +72,8 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 		)
 		{
 			var loader = dataLoader.Context
-				.GetOrAddBatchLoader<Guid, OwnerApiModel>(nameof(_dataLoaderService.OwnersByIdAsync),
-				_dataLoaderService.OwnersByIdAsync);
+				.GetOrAddBatchLoader<Guid, OwnerApiModel>(nameof(this.dataLoaderService.OwnersByIdAsync),
+				this.dataLoaderService.OwnersByIdAsync);
 
 			return loader.LoadAsync(context.Source.OwnerId);
 		}

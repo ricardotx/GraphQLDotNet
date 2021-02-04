@@ -7,9 +7,9 @@ using System;
 
 namespace GraphQLDotNet.Data.Source.Context
 {
-	public class ApplicationContext : DbContext
+	public class StorageContext : DbContext
 	{
-		public ApplicationContext(DbContextOptions options) : base(options)
+		public StorageContext(DbContextOptions options) : base(options)
 		{
 		}
 

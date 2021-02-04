@@ -3,23 +3,21 @@ using System;
 using GraphQLDotNet.Data.Source.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GraphQLDotNet.Data.Source.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
-    [Migration("20210201211645_Initial-migration")]
-    partial class Initialmigration
+    [DbContext(typeof(StorageContext))]
+    partial class StorageContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("GraphQLDotNet.Core.Source.Models.Account", b =>
+            modelBuilder.Entity("GraphQLDotNet.Core.Source.DataModels.Account", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,28 +41,28 @@ namespace GraphQLDotNet.Data.Source.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("768e238b-3fb6-4b1d-a8ed-ec9111a41bea"),
+                            Id = new Guid("e913680c-1427-476e-855a-8c1f04aff95a"),
                             Description = "Cash account for our users",
-                            OwnerId = new Guid("4fc8c99e-d975-449c-9d2a-1ffe86c08f6d"),
+                            OwnerId = new Guid("0cdded52-9e3a-4249-be4d-3a5dca8e99f8"),
                             Type = 0
                         },
                         new
                         {
-                            Id = new Guid("67ad16a9-d217-4dc1-8f4a-069617f7d1ab"),
+                            Id = new Guid("c11ec666-03e6-4e95-ab1e-664ff1e09615"),
                             Description = "Savings account for our users",
-                            OwnerId = new Guid("99e225ed-d0df-416b-b67c-e0cf416baf52"),
+                            OwnerId = new Guid("778ff453-8593-424a-ba9b-a7e32fba0478"),
                             Type = 1
                         },
                         new
                         {
-                            Id = new Guid("fccc5a20-dc27-43ca-ad17-f63f87dda843"),
+                            Id = new Guid("6454474e-f180-470e-9447-6a325903a92c"),
                             Description = "Income account for our users",
-                            OwnerId = new Guid("99e225ed-d0df-416b-b67c-e0cf416baf52"),
+                            OwnerId = new Guid("778ff453-8593-424a-ba9b-a7e32fba0478"),
                             Type = 3
                         });
                 });
 
-            modelBuilder.Entity("GraphQLDotNet.Core.Source.Models.Owner", b =>
+            modelBuilder.Entity("GraphQLDotNet.Core.Source.DataModels.Owner", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,19 +82,19 @@ namespace GraphQLDotNet.Data.Source.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4fc8c99e-d975-449c-9d2a-1ffe86c08f6d"),
+                            Id = new Guid("0cdded52-9e3a-4249-be4d-3a5dca8e99f8"),
                             Address = "John Doe's address",
                             Name = "John Doe"
                         },
                         new
                         {
-                            Id = new Guid("99e225ed-d0df-416b-b67c-e0cf416baf52"),
+                            Id = new Guid("778ff453-8593-424a-ba9b-a7e32fba0478"),
                             Address = "Jane Doe's address",
                             Name = "Jane Doe"
                         });
                 });
 
-            modelBuilder.Entity("GraphQLDotNet.Core.Source.Models.Role", b =>
+            modelBuilder.Entity("GraphQLDotNet.Core.Source.DataModels.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -120,19 +118,19 @@ namespace GraphQLDotNet.Data.Source.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("31e0c425-aaa9-4315-b138-fd957e04bf0a"),
+                            Id = new Guid("5cd0d301-c3f2-40ee-9736-b37826e4f027"),
                             Code = "admin",
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("d7a77eab-6b8c-44b9-a114-f36d81d80990"),
+                            Id = new Guid("24417ea1-2528-431b-89fc-6fd2611238fa"),
                             Code = "user",
                             Name = "User"
                         });
                 });
 
-            modelBuilder.Entity("GraphQLDotNet.Core.Source.Models.User", b =>
+            modelBuilder.Entity("GraphQLDotNet.Core.Source.DataModels.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -171,29 +169,29 @@ namespace GraphQLDotNet.Data.Source.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d368833f-6584-47a2-ae55-97962a527954"),
+                            Id = new Guid("224a0932-2140-4cb7-a5f5-47342b5d6579"),
                             Email = "admin@mail.com",
                             Name = "Admin",
                             Password = "123",
-                            RoleId = new Guid("31e0c425-aaa9-4315-b138-fd957e04bf0a"),
+                            RoleId = new Guid("5cd0d301-c3f2-40ee-9736-b37826e4f027"),
                             Status = 1
                         });
                 });
 
-            modelBuilder.Entity("GraphQLDotNet.Core.Source.Models.Account", b =>
+            modelBuilder.Entity("GraphQLDotNet.Core.Source.DataModels.Account", b =>
                 {
-                    b.HasOne("GraphQLDotNet.Core.Source.Models.Owner", "Owner")
+                    b.HasOne("GraphQLDotNet.Core.Source.DataModels.Owner", "Owner")
                         .WithMany("Accounts")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("GraphQLDotNet.Core.Source.Models.User", b =>
+            modelBuilder.Entity("GraphQLDotNet.Core.Source.DataModels.User", b =>
                 {
-                    b.HasOne("GraphQLDotNet.Core.Source.Models.Role", "Role")
+                    b.HasOne("GraphQLDotNet.Core.Source.DataModels.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -202,12 +200,12 @@ namespace GraphQLDotNet.Data.Source.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("GraphQLDotNet.Core.Source.Models.Owner", b =>
+            modelBuilder.Entity("GraphQLDotNet.Core.Source.DataModels.Owner", b =>
                 {
                     b.Navigation("Accounts");
                 });
 
-            modelBuilder.Entity("GraphQLDotNet.Core.Source.Models.Role", b =>
+            modelBuilder.Entity("GraphQLDotNet.Core.Source.DataModels.Role", b =>
                 {
                     b.Navigation("Users");
                 });
