@@ -14,6 +14,8 @@ namespace GraphQLDotNet.Core.Source.ApiModels
 
 		public string Name { get; set; }
 
+		public string Password { get; set; }
+
 		public RoleApiModel Role { get; set; }
 
 		public Guid RoleId { get; set; }
@@ -28,7 +30,8 @@ namespace GraphQLDotNet.Core.Source.ApiModels
 				Name = Name,
 				Email = Email,
 				Status = Status,
-				RoleId = RoleId
+				RoleId = RoleId,
+				Password = Password
 			};
 		}
 	}

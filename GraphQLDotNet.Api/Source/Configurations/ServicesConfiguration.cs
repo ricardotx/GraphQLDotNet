@@ -61,7 +61,8 @@ namespace GraphQLDotNet.Api.Source.Configurations
 			services
 				.AddScoped<IOwnerService, OwnerService>()
 				.AddScoped<IAccountService, AccountService>()
-				.AddScoped<IDataLoaderService, DataLoaderService>();
+				.AddScoped<IDataLoaderService, DataLoaderService>()
+				.AddScoped<IUserService, UserService>();
 		}
 	}
 }
