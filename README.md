@@ -12,6 +12,7 @@ The [GraphQL .NET](https://graphql-dotnet.github.io/docs/getting-started/query-o
 * [Getting Started with GraphQL in ASP.NET Core](https://code-maze.com/graphql-aspnetcore-basics/)
 * [Advanced GraphQL Queries, Error Handling, Data Loader](https://code-maze.com/advanced-graphql-queries/)
 * [GraphQL Mutations in ASP.NET Core](https://code-maze.com/graphql-mutations/)
+* [Architecture for ASP.NET Core Web API](https://medium.com/rocket-mortgage-technology-blog/implementing-an-effective-architecture-for-asp-net-core-web-api-254f95b8a434)
 
 # Packages
 * [Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Pomelo.EntityFrameworkCore.MySql/5.0.0-alpha.2?_src=template)
