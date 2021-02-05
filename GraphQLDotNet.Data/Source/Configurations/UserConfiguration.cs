@@ -4,19 +4,10 @@ using GraphQLDotNet.Core.Source.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using System;
-
 namespace GraphQLDotNet.Data.Source.Configurations
 {
 	class UserConfiguration : IEntityTypeConfiguration<User>
 	{
-		private Guid _adminRoleId;
-
-		public UserConfiguration(Guid adminRoleId)
-		{
-			_adminRoleId = adminRoleId;
-		}
-
 		public void Configure(EntityTypeBuilder<User> builder)
 		{
 			builder
@@ -42,25 +33,11 @@ namespace GraphQLDotNet.Data.Source.Configurations
 			   .Property(x => x.RoleId)
 			   .IsRequired();
 
-			// Index
+			// Contraints
 			builder
 				.HasIndex(x => x.Email)
 				.IsUnique()
 				.HasDatabaseName("UniqueUserEmail");
-
-			// Seed data
-			builder
-			  .HasData(
-				new User
-				{
-					Id = Guid.NewGuid(),
-					Status = UserStatusEnum.Active,
-					Name = "Admin",
-					Email = "admin@mail.com",
-					Password = "123",
-					RoleId = _adminRoleId,
-				}
-			);
 		}
 	}
 }

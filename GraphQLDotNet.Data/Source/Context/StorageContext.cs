@@ -1,5 +1,6 @@
 using GraphQLDotNet.Core.Source.DataModels;
 using GraphQLDotNet.Data.Source.Configurations;
+using GraphQLDotNet.Data.Source.Seeds;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -23,10 +24,16 @@ namespace GraphQLDotNet.Data.Source.Context
 			var ids = new Guid[] { Guid.NewGuid(), Guid.NewGuid() };
 			var adminRoleId = Guid.NewGuid();
 
-			modelBuilder.ApplyConfiguration(new OwnerConfiguration(ids));
-			modelBuilder.ApplyConfiguration(new AccountConfiguration(ids));
-			modelBuilder.ApplyConfiguration(new RoleConfiguration(adminRoleId));
-			modelBuilder.ApplyConfiguration(new UserConfiguration(adminRoleId));
+			modelBuilder.ApplyConfiguration(new OwnerConfiguration());
+			modelBuilder.ApplyConfiguration(new AccountConfiguration());
+			modelBuilder.ApplyConfiguration(new RoleConfiguration());
+			modelBuilder.ApplyConfiguration(new UserConfiguration());
+
+			// Seed
+			modelBuilder.ApplyConfiguration(new AccountSeed(ids));
+			modelBuilder.ApplyConfiguration(new OwnerSeed(ids));
+			modelBuilder.ApplyConfiguration(new RoleSeed(adminRoleId));
+			modelBuilder.ApplyConfiguration(new UserSeed(adminRoleId));
 		}
 	}
 }
