@@ -26,22 +26,22 @@ namespace GraphQLDotNet.Services.Source
 			return dataModel.Convert();
 		}
 
-		public async Task<bool> DeleteMultiAsync(Guid[] userIds)
-		{
-			for (int i = 0; i < userIds.Length; i++)
-			{
-				await DeleteOneAsync(userIds[i]);
-			}
-
-			return true;
-		}
-
-		public async Task<string> DeleteOneAsync(Guid userId)
+		public async Task<string> DeleteAsync(Guid userId)
 		{
 			var dataModel = await this.storage.Users.GetByIdAsync(userId);
 			this.storage.Users.Remove(dataModel);
 			await this.storage.SaveChangesAsync();
 			return $"The user with the id: '{ userId}' has been successfully deleted from db.";
+		}
+
+		public async Task<bool> DeleteAsync(Guid[] userIds)
+		{
+			for (int i = 0; i < userIds.Length; i++)
+			{
+				await DeleteAsync(userIds[i]);
+			}
+
+			return true;
 		}
 
 		public async Task<IEnumerable<UserApiModel>> GetAllAsync()

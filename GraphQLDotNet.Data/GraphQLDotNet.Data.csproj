@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Source\ApiRepository\**" />
+    <EmbeddedResource Remove="Source\ApiRepository\**" />
+    <None Remove="Source\ApiRepository\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2">
@@ -16,10 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GraphQLDotNet.Core\GraphQLDotNet.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Source\ApiRepository\" />
   </ItemGroup>
 
 </Project>

@@ -16,12 +16,12 @@ namespace GraphQLDotNet.Core.Source.Services
 		/// <summary>
 		/// Delete multiple users
 		/// </summary>
-		Task<bool> DeleteMultiAsync(Guid[] userIds);
+		Task<bool> DeleteAsync(Guid[] userIds);
 
 		/// <summary>
 		/// Delete one user
 		/// </summary>
-		Task<string> DeleteOneAsync(Guid userId);
+		Task<string> DeleteAsync(Guid userId);
 
 		/// <summary>
 		/// Get all users
