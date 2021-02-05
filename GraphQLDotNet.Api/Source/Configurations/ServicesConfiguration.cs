@@ -1,10 +1,11 @@
 using GraphQL.Server;
 
 using GraphQLDotNet.Api.Source.Resolvers;
+using GraphQLDotNet.Core.Source;
 using GraphQLDotNet.Core.Source.Repositories;
 using GraphQLDotNet.Core.Source.Resolvers;
 using GraphQLDotNet.Core.Source.Services;
-using GraphQLDotNet.Core.Source.Storage;
+using GraphQLDotNet.Data.Source;
 using GraphQLDotNet.Data.Source.Context;
 using GraphQLDotNet.Data.Source.Repositories;
 using GraphQLDotNet.Services.Source;
@@ -47,7 +48,7 @@ namespace GraphQLDotNet.Api.Source.Configurations
 		public static void ConfigureRepositories(this IServiceCollection services)
 		{
 			services
-				.AddScoped<IStorage, Storage>()
+				.AddScoped<IRepository, Repository>()
 				.AddScoped<IAccountRepository, AccountRepository>()
 				.AddScoped<IOwnerRepository, OwnerRepository>()
 				.AddScoped<IRoleRepository, RoleRepository>()

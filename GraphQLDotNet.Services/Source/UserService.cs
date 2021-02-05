@@ -1,7 +1,7 @@
+using GraphQLDotNet.Core.Source;
 using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Extensions;
 using GraphQLDotNet.Core.Source.Services;
-using GraphQLDotNet.Core.Source.Storage;
 
 using System;
 using System.Collections.Generic;
@@ -11,26 +11,26 @@ namespace GraphQLDotNet.Services.Source
 {
 	public class UserService : IUserService
 	{
-		private readonly IStorage storage;
+		private readonly IRepository repo;
 
-		public UserService(IStorage storage)
+		public UserService(IRepository repo)
 		{
-			this.storage = storage;
+			this.repo = repo;
 		}
 
 		public async Task<UserApiModel> CreateAsync(UserApiModel user)
 		{
 			var dataModel = user.Convert();
-			await this.storage.Users.AddAsync(dataModel);
-			await this.storage.SaveChangesAsync();
+			await this.repo.Users.AddAsync(dataModel);
+			await this.repo.SaveChangesAsync();
 			return dataModel.Convert();
 		}
 
 		public async Task<string> DeleteAsync(Guid userId)
 		{
-			var dataModel = await this.storage.Users.GetByIdAsync(userId);
-			this.storage.Users.Remove(dataModel);
-			await this.storage.SaveChangesAsync();
+			var dataModel = await this.repo.Users.GetByIdAsync(userId);
+			this.repo.Users.Remove(dataModel);
+			await this.repo.SaveChangesAsync();
 			return $"The user with the id: '{ userId}' has been successfully deleted from db.";
 		}
 
@@ -46,30 +46,30 @@ namespace GraphQLDotNet.Services.Source
 
 		public async Task<IEnumerable<UserApiModel>> GetAllAsync()
 		{
-			var dataModels = await this.storage.Users.GetAllAsync();
+			var dataModels = await this.repo.Users.GetAllAsync();
 			return dataModels.ConvertAll();
 		}
 
 		public async Task<UserApiModel> GetByEmailAsync(string email)
 		{
-			var dataModel = await this.storage.Users.FindOneAsync(x => x.Email == email);
+			var dataModel = await this.repo.Users.FindOneAsync(x => x.Email == email);
 			return dataModel.Convert();
 		}
 
 		public async Task<UserApiModel> GetByIdAsync(Guid userId)
 		{
-			var dataModel = await this.storage.Users.GetByIdAsync(userId);
+			var dataModel = await this.repo.Users.GetByIdAsync(userId);
 			return dataModel.Convert();
 		}
 
 		public async Task<UserApiModel> UpdateAsync(UserApiModel user)
 		{
-			var dataModel = await this.storage.Users.GetByIdAsync(user.Id);
+			var dataModel = await this.repo.Users.GetByIdAsync(user.Id);
 			dataModel.Name = user.Name;
 			dataModel.RoleId = user.RoleId;
 			dataModel.Status = user.Status;
 			dataModel.Password = user.Password;
-			await this.storage.SaveChangesAsync();
+			await this.repo.SaveChangesAsync();
 			return dataModel.Convert();
 		}
 	}

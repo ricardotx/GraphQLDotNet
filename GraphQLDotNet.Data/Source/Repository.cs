@@ -1,11 +1,12 @@
+using GraphQLDotNet.Core.Source;
 using GraphQLDotNet.Core.Source.Repositories;
-using GraphQLDotNet.Core.Source.Storage;
+using GraphQLDotNet.Data.Source.Context;
 
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Data.Source.Context
+namespace GraphQLDotNet.Data.Source
 {
-	public class Storage : IStorage
+	public class Repository : IRepository
 	{
 		private readonly IAccountRepository accountRepository;
 		private readonly StorageContext context;
@@ -13,7 +14,7 @@ namespace GraphQLDotNet.Data.Source.Context
 		private readonly IRoleRepository roleRepository;
 		private readonly IUserRepository userRepository;
 
-		public Storage(
+		public Repository(
 			StorageContext context,
 			IAccountRepository accountRepository,
 			IOwnerRepository ownerRepository,

@@ -10,7 +10,7 @@ namespace GraphQLDotNet.Data.Source.Seeds
 {
 	class AccountSeed : IEntityTypeConfiguration<Account>
 	{
-		private Guid[] ids;
+		private readonly Guid[] ids;
 
 		public AccountSeed(Guid[] ids)
 		{

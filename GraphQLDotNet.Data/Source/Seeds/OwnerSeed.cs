@@ -9,7 +9,7 @@ namespace GraphQLDotNet.Data.Source.Seeds
 {
 	public class OwnerSeed : IEntityTypeConfiguration<Owner>
 	{
-		private Guid[] ids;
+		private readonly Guid[] ids;
 
 		public OwnerSeed(Guid[] ids)
 		{

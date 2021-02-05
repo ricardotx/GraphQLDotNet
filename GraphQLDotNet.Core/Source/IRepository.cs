@@ -3,9 +3,9 @@ using GraphQLDotNet.Core.Source.Repositories;
 using System;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Core.Source.Storage
+namespace GraphQLDotNet.Core.Source
 {
-	public interface IStorage : IDisposable
+	public interface IRepository : IDisposable
 	{
 		IAccountRepository Accounts { get; }
 		IOwnerRepository Owners { get; }

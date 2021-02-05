@@ -4,7 +4,6 @@ using GraphQL.DataLoader;
 using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Resolvers;
 using GraphQLDotNet.Core.Source.Services;
-using GraphQLDotNet.Core.Source.Storage;
 
 using System;
 using System.Collections.Generic;
@@ -16,17 +15,14 @@ namespace GraphQLDotNet.Api.Source.Resolvers
 	{
 		private readonly IDataLoaderService dataLoaderService;
 		private readonly IOwnerService ownerService;
-		private readonly IStorage storage;
 
 		public OwnerResolver(
 			IOwnerService ownerService,
-			IDataLoaderService dataLoaderService,
-			IStorage storage
+			IDataLoaderService dataLoaderService
 		)
 		{
 			this.ownerService = ownerService;
 			this.dataLoaderService = dataLoaderService;
-			this.storage = storage;
 		}
 
 		public IDataLoaderResult<IEnumerable<AccountApiModel>> AccountsAsync(

@@ -10,7 +10,7 @@ namespace GraphQLDotNet.Data.Source.Seeds
 {
 	class UserSeed : IEntityTypeConfiguration<User>
 	{
-		private Guid adminRoleId;
+		private readonly Guid adminRoleId;
 
 		public UserSeed(Guid adminRoleId)
 		{
