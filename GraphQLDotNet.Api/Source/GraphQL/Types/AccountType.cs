@@ -4,7 +4,7 @@ using GraphQL.Types;
 using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Resolvers;
 
-namespace GraphQLDotNet.Api.Source.Types
+namespace GraphQLDotNet.Api.Source.GraphQL.Types
 {
 	public class AccountType : ObjectGraphType<AccountApiModel>
 	{

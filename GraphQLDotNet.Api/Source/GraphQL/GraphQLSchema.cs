@@ -1,12 +1,12 @@
 using GraphQL.Types;
 using GraphQL.Utilities;
 
-using GraphQLDotNet.Api.Source.Mutations;
-using GraphQLDotNet.Api.Source.Queries;
+using GraphQLDotNet.Api.Source.GraphQL.Mutations;
+using GraphQLDotNet.Api.Source.GraphQL.Queries;
 
 using System;
 
-namespace GraphQLDotNet.Api.Source
+namespace GraphQLDotNet.Api.GraphQL.Source
 {
 	public class GraphQLSchema : Schema
 	{

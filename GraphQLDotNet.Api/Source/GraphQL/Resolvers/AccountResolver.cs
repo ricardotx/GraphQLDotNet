@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GraphQLDotNet.Api.Source.Resolvers
+namespace GraphQLDotNet.Api.Source.GraphQL.Resolvers
 {
 	public class AccountResolver : IAccountResolver
 	{

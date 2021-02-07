@@ -1,5 +1,6 @@
 using GraphQL.Server.Ui.Playground;
 
+using GraphQLDotNet.Api.GraphQL.Source;
 using GraphQLDotNet.Api.Source.Configurations;
 
 using Microsoft.AspNetCore.Builder;

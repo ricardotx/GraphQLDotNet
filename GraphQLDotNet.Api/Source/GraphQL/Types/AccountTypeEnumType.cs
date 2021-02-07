@@ -2,7 +2,7 @@ using GraphQL.Types;
 
 using GraphQLDotNet.Core.Source.Enums;
 
-namespace GraphQLDotNet.Api.Source.Types
+namespace GraphQLDotNet.Api.Source.GraphQL.Types
 {
 	public class AccountTypeEnumType : EnumerationGraphType<AccountTypeEnum>
 	{

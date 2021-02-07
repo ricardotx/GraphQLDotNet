@@ -1,6 +1,6 @@
 using GraphQL.Types;
 
-namespace GraphQLDotNet.Api.Source.Types
+namespace GraphQLDotNet.Api.Source.GraphQL.Types
 {
 	public class OwnerInputType : InputObjectGraphType
 	{
