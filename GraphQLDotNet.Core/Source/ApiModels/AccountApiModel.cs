@@ -23,8 +23,9 @@ namespace GraphQLDotNet.Core.Source.ApiModels
 			return new Account
 			{
 				Id = Id,
+				Type = Type,
+				Description = Description,
 				OwnerId = OwnerId,
-				Type = Type
 			};
 		}
 	}
