@@ -23,7 +23,7 @@ namespace GraphQLDotNet.Core.Source.DataModels
 			return new AccountApiModel
 			{
 				Id = Id,
-				Type = Type
+				Type = Type,
 				Description = Description,
 				OwnerId = OwnerId,
 			};
