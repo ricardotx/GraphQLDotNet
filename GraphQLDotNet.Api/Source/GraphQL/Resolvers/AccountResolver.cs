@@ -62,7 +62,7 @@ namespace GraphQLDotNet.Api.Source.GraphQL.Resolvers
 			return await this.accountService.UpdateAccountAsync(accountId, account);
 		}
 
-		public IDataLoaderResult<OwnerApiModel> OwnerAsync(
+		public IDataLoaderResult<OwnerApiModel> OwnerDataLoader(
 			IResolveFieldContext<AccountApiModel> context,
 			IDataLoaderContextAccessor dataLoader
 		)

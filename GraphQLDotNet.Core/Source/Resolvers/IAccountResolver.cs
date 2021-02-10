@@ -20,6 +20,6 @@ namespace GraphQLDotNet.Core.Source.Resolvers
 
 		Task<AccountApiModel> AccountUpdateAsync(IResolveFieldContext context);
 
-		IDataLoaderResult<OwnerApiModel> OwnerAsync(IResolveFieldContext<AccountApiModel> context, IDataLoaderContextAccessor dataLoader);
+		IDataLoaderResult<OwnerApiModel> OwnerDataLoader(IResolveFieldContext<AccountApiModel> context, IDataLoaderContextAccessor dataLoader);
 	}
 }

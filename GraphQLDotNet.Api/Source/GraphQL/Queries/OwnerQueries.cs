@@ -9,15 +9,15 @@ namespace GraphQLDotNet.Api.Source.GraphQL.Queries
 	{
 		protected void SetOwnerQueries(IOwnerResolver resolver)
 		{
-			Field<ListGraphType<OwnerType>>(
+			FieldAsync<ListGraphType<OwnerType>>(
 				"owners",
-				resolve: context => resolver.OwnersAsync()
+				resolve: async context => await resolver.OwnersAsync()
 			);
 
-			Field<OwnerType>(
+			FieldAsync<OwnerType>(
 				"owner",
 				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "ownerId" }),
-				resolve: context => resolver.OwnerAsync(context)
+				resolve: async context => await resolver.OwnerAsync(context)
 			);
 		}
 	}

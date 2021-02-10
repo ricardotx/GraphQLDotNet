@@ -9,24 +9,24 @@ namespace GraphQLDotNet.Api.Source.GraphQL.Mutations
 	{
 		protected void SetOwnerMutations(IOwnerResolver resolvers)
 		{
-			Field<OwnerType>(
+			FieldAsync<OwnerType>(
 				"ownerCreate",
 				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<OwnerInputType>> { Name = "data" }),
-				resolve: context => resolvers.OwnerCreateAsync(context)
+				resolve: async context => await resolvers.OwnerCreateAsync(context)
 			);
 
-			Field<OwnerType>(
+			FieldAsync<OwnerType>(
 				"ownerUpdate",
 				arguments: new QueryArguments(
 					new QueryArgument<NonNullGraphType<OwnerInputType>> { Name = "data" },
 					new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "ownerId" }),
-				resolve: context => resolvers.OwnerUpdateAsync(context)
+				resolve: async context => await resolvers.OwnerUpdateAsync(context)
 			);
 
-			Field<StringGraphType>(
+			FieldAsync<StringGraphType>(
 				"ownerDelete",
 				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "ownerId" }),
-				resolve: context => resolvers.OwnerDeleteAsync(context)
+				resolve: async context => await resolvers.OwnerDeleteAsync(context)
 			);
 		}
 	}

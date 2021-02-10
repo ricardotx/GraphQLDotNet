@@ -10,7 +10,7 @@ namespace GraphQLDotNet.Core.Source.Resolvers
 {
 	public interface IOwnerResolver
 	{
-		IDataLoaderResult<IEnumerable<AccountApiModel>> AccountsAsync(IResolveFieldContext<OwnerApiModel> context, IDataLoaderContextAccessor dataLoader);
+		IDataLoaderResult<IEnumerable<AccountApiModel>> AccountsDataLoader(IResolveFieldContext<OwnerApiModel> context, IDataLoaderContextAccessor dataLoader);
 
 		Task<OwnerApiModel> OwnerAsync(IResolveFieldContext context);
 

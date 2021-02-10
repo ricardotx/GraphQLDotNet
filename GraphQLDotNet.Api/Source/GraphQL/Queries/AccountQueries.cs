@@ -9,15 +9,15 @@ namespace GraphQLDotNet.Api.Source.GraphQL.Queries
 	{
 		protected void SetAccountQueries(IAccountResolver resolvers)
 		{
-			Field<ListGraphType<AccountType>>(
+			FieldAsync<ListGraphType<AccountType>>(
 			   "accounts",
-			   resolve: context => resolvers.AccountsAsync()
+			   resolve: async context => await resolvers.AccountsAsync()
 		   );
 
-			Field<AccountType>(
+			FieldAsync<AccountType>(
 				"account",
 				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "accountId" }),
-				resolve: context => resolvers.AccountAsync(context)
+				resolve: async context => await resolvers.AccountAsync(context)
 			);
 		}
 	}

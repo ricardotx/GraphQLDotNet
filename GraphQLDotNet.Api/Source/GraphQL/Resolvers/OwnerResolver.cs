@@ -25,7 +25,7 @@ namespace GraphQLDotNet.Api.Source.GraphQL.Resolvers
 			this.dataLoaderService = dataLoaderService;
 		}
 
-		public IDataLoaderResult<IEnumerable<AccountApiModel>> AccountsAsync(
+		public IDataLoaderResult<IEnumerable<AccountApiModel>> AccountsDataLoader(
 			IResolveFieldContext<OwnerApiModel> context,
 			IDataLoaderContextAccessor dataLoader
 		)

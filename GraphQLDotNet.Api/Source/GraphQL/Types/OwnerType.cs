@@ -16,7 +16,7 @@ namespace GraphQLDotNet.Api.Source.GraphQL.Types
 			Field(x => x.Id, type: typeof(NonNullGraphType<IdGraphType>)).Description("Id property from the owner object.");
 			Field(x => x.Name, type: typeof(StringGraphType)).Description("Name property from the owner object.");
 			Field(x => x.Address, type: typeof(StringGraphType)).Description("Address property from the owner object.");
-			Field<ListGraphType<AccountType>>("accounts", resolve: context => resolver.AccountsAsync(context, dataLoader));
+			Field<ListGraphType<AccountType>>("accounts", resolve: context => resolver.AccountsDataLoader(context, dataLoader));
 		}
 	}
 }
