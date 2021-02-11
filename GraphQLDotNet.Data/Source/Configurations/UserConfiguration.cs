@@ -38,6 +38,11 @@ namespace GraphQLDotNet.Data.Source.Configurations
 				.HasIndex(x => x.Email)
 				.IsUnique()
 				.HasDatabaseName("UniqueUserEmail");
+
+			builder
+				.HasOne(x => x.Role)
+				.WithMany(x => x.Users)
+				.OnDelete(DeleteBehavior.Restrict);
 		}
 	}
 }

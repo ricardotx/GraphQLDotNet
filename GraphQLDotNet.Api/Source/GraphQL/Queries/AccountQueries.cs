@@ -12,7 +12,7 @@ namespace GraphQLDotNet.Api.Source.GraphQL.Queries
 			FieldAsync<ListGraphType<AccountType>>(
 			   "accounts",
 			   resolve: async context => await resolvers.AccountsAsync()
-		   );
+			);
 
 			FieldAsync<AccountType>(
 				"account",

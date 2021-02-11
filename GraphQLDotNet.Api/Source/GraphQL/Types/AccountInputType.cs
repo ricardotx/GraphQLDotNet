@@ -1,5 +1,6 @@
 using GraphQL.Types;
 
+using GraphQLDotNet.Api.Source.GraphQL.Types.Enums;
 using GraphQLDotNet.Core.Source.ApiModels;
 
 namespace GraphQLDotNet.Api.Source.GraphQL.Types

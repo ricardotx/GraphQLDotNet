@@ -15,7 +15,7 @@ namespace GraphQLDotNet.Data.Source.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.3");
 
             modelBuilder.Entity("GraphQLDotNet.Core.Source.DataModels.Account", b =>
                 {
@@ -41,23 +41,23 @@ namespace GraphQLDotNet.Data.Source.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e913680c-1427-476e-855a-8c1f04aff95a"),
+                            Id = new Guid("eef35151-b79d-4a49-80f3-4835d88fadb2"),
                             Description = "Cash account for our users",
-                            OwnerId = new Guid("0cdded52-9e3a-4249-be4d-3a5dca8e99f8"),
+                            OwnerId = new Guid("bd692961-78d8-488e-bdec-3663d6401b61"),
                             Type = 0
                         },
                         new
                         {
-                            Id = new Guid("c11ec666-03e6-4e95-ab1e-664ff1e09615"),
+                            Id = new Guid("d4f59aaa-789c-43ee-ba0b-4360086cba8b"),
                             Description = "Savings account for our users",
-                            OwnerId = new Guid("778ff453-8593-424a-ba9b-a7e32fba0478"),
+                            OwnerId = new Guid("7acdde20-2a8c-4b4e-b535-20d933a50308"),
                             Type = 1
                         },
                         new
                         {
-                            Id = new Guid("6454474e-f180-470e-9447-6a325903a92c"),
+                            Id = new Guid("8eab6378-7189-4359-bbd1-8759c8570706"),
                             Description = "Income account for our users",
-                            OwnerId = new Guid("778ff453-8593-424a-ba9b-a7e32fba0478"),
+                            OwnerId = new Guid("7acdde20-2a8c-4b4e-b535-20d933a50308"),
                             Type = 3
                         });
                 });
@@ -82,13 +82,13 @@ namespace GraphQLDotNet.Data.Source.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0cdded52-9e3a-4249-be4d-3a5dca8e99f8"),
+                            Id = new Guid("bd692961-78d8-488e-bdec-3663d6401b61"),
                             Address = "John Doe's address",
                             Name = "John Doe"
                         },
                         new
                         {
-                            Id = new Guid("778ff453-8593-424a-ba9b-a7e32fba0478"),
+                            Id = new Guid("7acdde20-2a8c-4b4e-b535-20d933a50308"),
                             Address = "Jane Doe's address",
                             Name = "Jane Doe"
                         });
@@ -118,13 +118,13 @@ namespace GraphQLDotNet.Data.Source.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5cd0d301-c3f2-40ee-9736-b37826e4f027"),
+                            Id = new Guid("7f027bad-48c1-448b-879f-d01aa1d0b7e2"),
                             Code = "admin",
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("24417ea1-2528-431b-89fc-6fd2611238fa"),
+                            Id = new Guid("4cee5850-6572-4bcc-a7d3-cee687ddcfd9"),
                             Code = "user",
                             Name = "User"
                         });
@@ -169,11 +169,11 @@ namespace GraphQLDotNet.Data.Source.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("224a0932-2140-4cb7-a5f5-47342b5d6579"),
+                            Id = new Guid("4954d130-1b75-4ee7-a234-02d95f696d38"),
                             Email = "admin@mail.com",
                             Name = "Admin",
                             Password = "123",
-                            RoleId = new Guid("5cd0d301-c3f2-40ee-9736-b37826e4f027"),
+                            RoleId = new Guid("7f027bad-48c1-448b-879f-d01aa1d0b7e2"),
                             Status = 1
                         });
                 });

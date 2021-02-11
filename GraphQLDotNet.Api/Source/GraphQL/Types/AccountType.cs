@@ -1,6 +1,7 @@
 using GraphQL.DataLoader;
 using GraphQL.Types;
 
+using GraphQLDotNet.Api.Source.GraphQL.Types.Enums;
 using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Resolvers;
 
@@ -13,6 +14,7 @@ namespace GraphQLDotNet.Api.Source.GraphQL.Types
 			IDataLoaderContextAccessor dataLoader
 		)
 		{
+			Name = "Account";
 			Field(x => x.Id, type: typeof(NonNullGraphType<IdGraphType>)).Description("Id property from the account object.");
 			Field(x => x.Description, type: typeof(StringGraphType)).Description("Description property from the account object.");
 			Field(x => x.OwnerId, type: typeof(IdGraphType)).Description("OwnerId property from the account object.");
