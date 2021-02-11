@@ -26,14 +26,16 @@ The [GraphQL .NET](https://graphql-dotnet.github.io/docs/getting-started/query-o
 
 ````graphql
 type Query {
-  account(accountId: String!): AccountType
-  accounts: [AccountType]
-  owner(ownerId: String!): OwnerType
-  owners: [OwnerType]
+  account(accountId: String!): Account
+  accounts: [Account]
+  owner(ownerId: String!): Owner
+  owners: [Owner]
+  roles: [Role]
+  users: [User]
 }
 
-type OwnerType {
-  accounts: [AccountType]
+type Owner {
+  accounts: [Account]
 
   # Address property from the owner object.
   address: String
@@ -45,13 +47,13 @@ type OwnerType {
   name: String
 }
 
-type AccountType {
+type Account {
   # Description property from the account object.
   description: String
 
   # Id property from the account object.
   id: ID!
-  owner: OwnerType
+  owner: Owner
 
   # OwnerId property from the account object.
   ownerId: ID
@@ -66,24 +68,68 @@ enum AccountTypeEnum {
   INCOME
 }
 
+type Role {
+  # Role Code
+  code: String
+
+  # Role ID
+  id: ID!
+
+  # Role Name
+  name: String
+  users: [User]
+}
+
+type User {
+  # User Name
+  email: String
+
+  # User ID
+  id: ID!
+
+  # User Name
+  name: String
+  role: Role
+
+  # User Role ID
+  roleId: ID
+
+  # User Status
+  status: UserStatusEnum
+}
+
+# Enumeration for the user status.
+enum UserStatusEnum {
+  NOT_ACTIVE
+  ACTIVE
+  BLOCKED
+}
+
 type Mutation {
-  accountCreate(data: AccountInput!): AccountType
+  accountCreate(data: AccountInput!): Account
   accountDelete(accountId: ID!): String
-  accountUpdate(data: AccountInput!, accountId: String!): AccountType
-  ownerCreate(data: OwnerInput!): OwnerType
+  accountUpdate(data: AccountInput!, accountId: String!): Account
+  ownerCreate(data: OwnerInput!): Owner
   ownerDelete(ownerId: ID!): String
-  ownerUpdate(data: OwnerInput!, ownerId: String!): OwnerType
+  ownerUpdate(data: OwnerInput!, ownerId: String!): Owner
 }
 
 input OwnerInput {
+  # Name property from the owner object.
   name: String!
+
+  # Address property from the owner object.
   address: String
 }
 
 input AccountInput {
   type: AccountTypeEnum!
-  description: String!
-  ownerId: String
+
+  # Description property from the account object.
+  description: String
+
+  # OwnerId property from the account object.
+  ownerId: ID
 }
 ````
 
