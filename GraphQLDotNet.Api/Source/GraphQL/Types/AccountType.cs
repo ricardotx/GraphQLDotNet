@@ -2,12 +2,12 @@ using GraphQL.DataLoader;
 using GraphQL.Types;
 
 using GraphQLDotNet.Api.Source.GraphQL.Types.Enums;
-using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Dtos;
 using GraphQLDotNet.Core.Source.Resolvers;
 
 namespace GraphQLDotNet.Api.Source.GraphQL.Types
 {
-	public class AccountType : ObjectGraphType<AccountApiModel>
+	public class AccountType : ObjectGraphType<AccountDto>
 	{
 		public AccountType(
 			IAccountResolver resolver,

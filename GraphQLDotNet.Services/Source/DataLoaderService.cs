@@ -1,5 +1,5 @@
 using GraphQLDotNet.Core.Source;
-using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Dtos;
 using GraphQLDotNet.Core.Source.Extensions;
 using GraphQLDotNet.Core.Source.Services;
 
@@ -19,13 +19,13 @@ namespace GraphQLDotNet.Services.Source
 			this.repo = repo;
 		}
 
-		public async Task<ILookup<Guid, AccountApiModel>> AccountsByOwnerIdsAsync(IEnumerable<Guid> ownerIds)
+		public async Task<ILookup<Guid, AccountDto>> AccountsByOwnerIdsAsync(IEnumerable<Guid> ownerIds)
 		{
 			var dataModels = await this.repo.Accounts.FindAllAsync(x => ownerIds.Contains(x.OwnerId));
 			return dataModels.ConvertAll().ToLookup(x => x.OwnerId);
 		}
 
-		public async Task<IDictionary<Guid, OwnerApiModel>> OwnersByIdAsync(IEnumerable<Guid> ownerIds)
+		public async Task<IDictionary<Guid, OwnerDto>> OwnersByIdAsync(IEnumerable<Guid> ownerIds)
 		{
 			var dataModels = await this.repo.Owners.FindAllAsync(x => ownerIds.Contains(x.Id));
 			return dataModels.ConvertAll().ToDictionary(x => x.Id);

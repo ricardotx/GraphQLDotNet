@@ -1,10 +1,10 @@
 using GraphQL.Types;
 
-using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Dtos;
 
 namespace GraphQLDotNet.Api.Source.GraphQL.Types
 {
-	public class OwnerInputType : InputObjectGraphType<OwnerApiModel>
+	public class OwnerInputType : InputObjectGraphType<OwnerDto>
 	{
 		public OwnerInputType()
 		{

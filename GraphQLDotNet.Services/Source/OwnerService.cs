@@ -1,5 +1,5 @@
 using GraphQLDotNet.Core.Source;
-using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Dtos;
 using GraphQLDotNet.Core.Source.Extensions;
 using GraphQLDotNet.Core.Source.Services;
 
@@ -18,7 +18,7 @@ namespace GraphQLDotNet.Services.Source
 			this.repo = repo;
 		}
 
-		public async Task<OwnerApiModel> CreateOwnerAsync(OwnerApiModel owner)
+		public async Task<OwnerDto> CreateOwnerAsync(OwnerDto owner)
 		{
 			var dataModel = owner.Convert();
 			await this.repo.Owners.AddAsync(dataModel);
@@ -34,19 +34,19 @@ namespace GraphQLDotNet.Services.Source
 			return $"The owner with the id: {ownerId} has been successfully deleted from db.";
 		}
 
-		public async Task<OwnerApiModel> GetOwnerAsync(Guid ownerId)
+		public async Task<OwnerDto> GetOwnerAsync(Guid ownerId)
 		{
 			var owner = await this.repo.Owners.GetByIdAsync(ownerId);
 			return owner.Convert();
 		}
 
-		public async Task<IEnumerable<OwnerApiModel>> GetOwnersAsync()
+		public async Task<IEnumerable<OwnerDto>> GetOwnersAsync()
 		{
 			var owners = await this.repo.Owners.GetAllAsync();
 			return owners.ConvertAll();
 		}
 
-		public async Task<OwnerApiModel> UpdateOwnerAsync(Guid ownerId, OwnerApiModel owner)
+		public async Task<OwnerDto> UpdateOwnerAsync(Guid ownerId, OwnerDto owner)
 		{
 			var dbOwner = await this.repo.Owners.GetByIdAsync(ownerId);
 			dbOwner.Name = owner.Name;

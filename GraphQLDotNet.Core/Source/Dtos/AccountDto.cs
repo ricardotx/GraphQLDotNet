@@ -1,18 +1,18 @@
 using GraphQLDotNet.Core.Source.Converters;
-using GraphQLDotNet.Core.Source.DataModels;
+using GraphQLDotNet.Core.Source.Entities;
 using GraphQLDotNet.Core.Source.Enums;
 
 using System;
 
-namespace GraphQLDotNet.Core.Source.ApiModels
+namespace GraphQLDotNet.Core.Source.Dtos
 {
-	public class AccountApiModel : IConvertModel<AccountApiModel, Account>
+	public class AccountDto : IConvertModel<AccountDto, Account>
 	{
 		public string Description { get; set; }
 
 		public Guid Id { get; set; }
 
-		public OwnerApiModel Owner { get; set; }
+		public OwnerDto Owner { get; set; }
 
 		public Guid OwnerId { get; set; }
 

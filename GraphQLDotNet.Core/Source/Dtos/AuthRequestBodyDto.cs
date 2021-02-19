@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace GraphQLDotNet.Core.Source.ApiModels
+namespace GraphQLDotNet.Core.Source.Dtos
 {
-	public class AuthRequestBodyApiModel
+	public class AuthRequestBodyDto
 	{
 		[Required]
 		public string ClientId { get; set; }

@@ -1,4 +1,4 @@
-using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Dtos;
 
 using System;
 using System.Collections.Generic;
@@ -8,14 +8,14 @@ namespace GraphQLDotNet.Core.Source.Services
 {
 	public interface IOwnerService
 	{
-		Task<OwnerApiModel> CreateOwnerAsync(OwnerApiModel owner);
+		Task<OwnerDto> CreateOwnerAsync(OwnerDto owner);
 
 		Task<string> DeleteOwnerAsync(Guid ownerId);
 
-		Task<OwnerApiModel> GetOwnerAsync(Guid ownerId);
+		Task<OwnerDto> GetOwnerAsync(Guid ownerId);
 
-		Task<IEnumerable<OwnerApiModel>> GetOwnersAsync();
+		Task<IEnumerable<OwnerDto>> GetOwnersAsync();
 
-		Task<OwnerApiModel> UpdateOwnerAsync(Guid ownerId, OwnerApiModel owner);
+		Task<OwnerDto> UpdateOwnerAsync(Guid ownerId, OwnerDto owner);
 	}
 }

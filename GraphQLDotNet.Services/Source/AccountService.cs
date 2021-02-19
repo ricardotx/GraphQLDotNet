@@ -1,5 +1,5 @@
 using GraphQLDotNet.Core.Source;
-using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Dtos;
 using GraphQLDotNet.Core.Source.Extensions;
 using GraphQLDotNet.Core.Source.Services;
 
@@ -18,7 +18,7 @@ namespace GraphQLDotNet.Services.Source
 			this.repo = repo;
 		}
 
-		public async Task<AccountApiModel> CreateAccountAsync(AccountApiModel account)
+		public async Task<AccountDto> CreateAccountAsync(AccountDto account)
 		{
 			var dataModel = account.Convert();
 			await this.repo.Accounts.AddAsync(dataModel);
@@ -34,19 +34,19 @@ namespace GraphQLDotNet.Services.Source
 			return $"The account with the id: {accountId} has been successfully deleted from db.";
 		}
 
-		public async Task<AccountApiModel> GetAccountAsync(Guid accountId)
+		public async Task<AccountDto> GetAccountAsync(Guid accountId)
 		{
 			var account = await this.repo.Accounts.GetByIdAsync(accountId);
 			return account.Convert();
 		}
 
-		public async Task<IEnumerable<AccountApiModel>> GetAccountsAsync()
+		public async Task<IEnumerable<AccountDto>> GetAccountsAsync()
 		{
 			var accounts = await this.repo.Accounts.GetAllAsync();
 			return accounts.ConvertAll();
 		}
 
-		public async Task<AccountApiModel> UpdateAccountAsync(Guid accountId, AccountApiModel account)
+		public async Task<AccountDto> UpdateAccountAsync(Guid accountId, AccountDto account)
 		{
 			var dbAccount = await this.repo.Accounts.GetByIdAsync(accountId);
 			dbAccount.Description = account.Description;

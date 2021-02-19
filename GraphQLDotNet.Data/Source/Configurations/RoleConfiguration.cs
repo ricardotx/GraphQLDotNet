@@ -1,4 +1,4 @@
-using GraphQLDotNet.Core.Source.DataModels;
+using GraphQLDotNet.Core.Source.Entities;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

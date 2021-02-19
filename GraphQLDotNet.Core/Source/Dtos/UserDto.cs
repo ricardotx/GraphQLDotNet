@@ -1,12 +1,12 @@
-using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Converters;
+using GraphQLDotNet.Core.Source.Entities;
 using GraphQLDotNet.Core.Source.Enums;
 
 using System;
 
-namespace GraphQLDotNet.Core.Source.DataModels
+namespace GraphQLDotNet.Core.Source.Dtos
 {
-	public class User : IConvertModel<User, UserApiModel>
+	public class UserDto : IConvertModel<UserDto, User>
 	{
 		public string Email { get; set; }
 
@@ -16,21 +16,22 @@ namespace GraphQLDotNet.Core.Source.DataModels
 
 		public string Password { get; set; }
 
-		public Role Role { get; set; }
+		public RoleDto Role { get; set; }
 
 		public Guid RoleId { get; set; }
 
 		public UserStatusEnum Status { get; set; }
 
-		public UserApiModel Convert()
+		public User Convert()
 		{
-			return new UserApiModel
+			return new User
 			{
 				Id = Id,
 				Name = Name,
 				Email = Email,
 				Status = Status,
-				RoleId = RoleId
+				RoleId = RoleId,
+				Password = Password
 			};
 		}
 	}

@@ -1,14 +1,14 @@
-using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Converters;
+using GraphQLDotNet.Core.Source.Entities;
 
 using System;
 using System.Collections.Generic;
 
-namespace GraphQLDotNet.Core.Source.DataModels
+namespace GraphQLDotNet.Core.Source.Dtos
 {
-	public class Owner : IConvertModel<Owner, OwnerApiModel>
+	public class OwnerDto : IConvertModel<OwnerDto, Owner>
 	{
-		public ICollection<Account> Accounts { get; set; }
+		public ICollection<AccountDto> Accounts { get; set; }
 
 		public string Address { get; set; }
 
@@ -16,9 +16,9 @@ namespace GraphQLDotNet.Core.Source.DataModels
 
 		public string Name { get; set; }
 
-		public OwnerApiModel Convert()
+		public Owner Convert()
 		{
-			return new OwnerApiModel
+			return new Owner
 			{
 				Id = Id,
 				Name = Name,

@@ -1,12 +1,12 @@
 using GraphQL.DataLoader;
 using GraphQL.Types;
 
-using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Dtos;
 using GraphQLDotNet.Core.Source.Resolvers;
 
 namespace GraphQLDotNet.Api.Source.GraphQL.Types
 {
-	public class OwnerType : ObjectGraphType<OwnerApiModel>
+	public class OwnerType : ObjectGraphType<OwnerDto>
 	{
 		public OwnerType(
 			IOwnerResolver resolver,

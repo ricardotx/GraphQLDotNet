@@ -8,7 +8,7 @@ namespace GraphQLDotNet.Core.Source.Extensions
 	public static class ConvertExtensions
 	{
 		/// <summary>
-		/// Convert a IEnumerable<ApiModel> into IEnumerable<DataModel> and backwards
+		/// Convert a IEnumerable<Dto> into IEnumerable<Entity> and backwards
 		/// </summary>
 		public static IEnumerable<TTarget> ConvertAll<TSource, TTarget>(
 			this IEnumerable<IConvertModel<TSource, TTarget>> models

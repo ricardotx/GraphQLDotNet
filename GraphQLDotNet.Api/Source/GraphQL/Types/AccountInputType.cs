@@ -1,11 +1,11 @@
 using GraphQL.Types;
 
 using GraphQLDotNet.Api.Source.GraphQL.Types.Enums;
-using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Dtos;
 
 namespace GraphQLDotNet.Api.Source.GraphQL.Types
 {
-	public class AccountInputType : InputObjectGraphType<AccountApiModel>
+	public class AccountInputType : InputObjectGraphType<AccountDto>
 	{
 		public AccountInputType()
 		{

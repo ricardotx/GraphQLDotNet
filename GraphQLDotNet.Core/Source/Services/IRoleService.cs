@@ -1,4 +1,4 @@
-using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Dtos;
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace GraphQLDotNet.Core.Source.Services
 		// <summary>
 		/// Create new user async
 		/// </summary>
-		Task<RoleApiModel> CreateAsync(RoleApiModel role);
+		Task<RoleDto> CreateAsync(RoleDto role);
 
 		/// <summary>
 		/// Delete multiple roles
@@ -26,16 +26,16 @@ namespace GraphQLDotNet.Core.Source.Services
 		/// <summary>
 		/// Get all roles
 		/// </summary>
-		Task<IEnumerable<RoleApiModel>> GetAllAsync();
+		Task<IEnumerable<RoleDto>> GetAllAsync();
 
 		/// <summary>
 		/// Get role by id
 		/// </summary>
-		Task<RoleApiModel> GetByIdAsync(Guid roleId);
+		Task<RoleDto> GetByIdAsync(Guid roleId);
 
 		/// <summary>
 		/// Update role
 		/// </summary>
-		Task<RoleApiModel> UpdateAsync(RoleApiModel role);
+		Task<RoleDto> UpdateAsync(RoleDto role);
 	}
 }

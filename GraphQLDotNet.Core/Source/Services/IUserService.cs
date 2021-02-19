@@ -1,4 +1,4 @@
-using GraphQLDotNet.Core.Source.ApiModels;
+using GraphQLDotNet.Core.Source.Dtos;
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace GraphQLDotNet.Core.Source.Services
 		// <summary>
 		/// Create new user async
 		/// </summary>
-		Task<UserApiModel> CreateAsync(UserApiModel user);
+		Task<UserDto> CreateAsync(UserDto user);
 
 		/// <summary>
 		/// Delete multiple users
@@ -26,21 +26,21 @@ namespace GraphQLDotNet.Core.Source.Services
 		/// <summary>
 		/// Get all users
 		/// </summary>
-		Task<IEnumerable<UserApiModel>> GetAllAsync();
+		Task<IEnumerable<UserDto>> GetAllAsync();
 
 		/// <summary>
 		/// Get user by email
 		/// </summary>
-		Task<UserApiModel> GetByEmailAsync(string email);
+		Task<UserDto> GetByEmailAsync(string email);
 
 		/// <summary>
 		/// Get user by id
 		/// </summary>
-		Task<UserApiModel> GetByIdAsync(Guid userId);
+		Task<UserDto> GetByIdAsync(Guid userId);
 
 		/// <summary>
 		/// Update user
 		/// </summary>
-		Task<UserApiModel> UpdateAsync(UserApiModel user);
+		Task<UserDto> UpdateAsync(UserDto user);
 	}
 }

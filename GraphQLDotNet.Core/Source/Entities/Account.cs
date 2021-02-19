@@ -1,12 +1,12 @@
-using GraphQLDotNet.Core.Source.ApiModels;
 using GraphQLDotNet.Core.Source.Converters;
+using GraphQLDotNet.Core.Source.Dtos;
 using GraphQLDotNet.Core.Source.Enums;
 
 using System;
 
-namespace GraphQLDotNet.Core.Source.DataModels
+namespace GraphQLDotNet.Core.Source.Entities
 {
-	public class Account : IConvertModel<Account, AccountApiModel>
+	public class Account : IConvertModel<Account, AccountDto>
 	{
 		public string Description { get; set; }
 
@@ -18,9 +18,9 @@ namespace GraphQLDotNet.Core.Source.DataModels
 
 		public AccountTypeEnum Type { get; set; }
 
-		public AccountApiModel Convert()
+		public AccountDto Convert()
 		{
-			return new AccountApiModel
+			return new AccountDto
 			{
 				Id = Id,
 				Type = Type,
